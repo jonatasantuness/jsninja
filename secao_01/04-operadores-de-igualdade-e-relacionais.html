@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Operadores de igualdade e relacionais</title>
+  </head>
+
+  <body>
+    <script>
+      /* -----------------------------------------------------------------------
+      Operadores de igualdade e relacionais
+      ----------------------------------------------------------------------- */
+
+      /* Um operador relacional compara seus operando e retorna um valor booleano verificando se comparação é verdadeira. */
+
+      /* O JavaScript é uma linguagem de tipagem fraca e dinâmica, isso significa que, embora as variáveis possuam tipos, eles só são atribuídos em tempo de execução. */
+
+      /* Devido a essa característica, o JavaScript possui dois tipos de operadores de igualdade e dois de desigualdade (Ampla e Estrita): */
+
+      /*
+       * Igualdade Ampla (==)
+       * Igualdade Estrita (===)
+       * Desigualdade Ampla (!=)
+       * Desigualdade Estrita (!==)
+       */
+
+      /* Em resumo, a Igualdade Ampla irá realizar uma conversão de tipo ao comparar duas coisas, já a Igualdade Estrita irá fazer a mesma comparação sem conversão de tipo (simplesmente retornando false se os tipos forem diferentes); */
+
+      /* Igualdade Ampla (valor) -------------------------------------------- */
+
+      console.log("Igualdade Ampla (valor)", 23 == "23");
+
+      // a string "22" será convertida para Number
+
+      console.log("Conversão de tipo em comparações relacionais", 23 < "22");
+
+      /* Igualdade Estrita (valor e tipo) ----------------------------------- */
+
+      console.log("Igualdade Estrita (valor e tipo)", 23 === "23");
+
+      /* o JavaScript, internamente, trata os valores true e false como 1 e 0, respectivamente, porém diferenciando os tipos Number de Boolean */
+
+      console.log("0 == false ? ", 0 == false);
+
+      console.log("0 === false ? ", 0 === false);
+
+      /* Duas string são estritamente iguals quando elas possuem a mesma sequência de caracteres, o mesmo tamanho, e os mesmos caracteres em posições correspondentes. */
+
+      console.log("Strings iguais: ", "Jonatas" === "Jonatas");
+
+      /* Dois números são estritamente iguais quando eles são numericamente iguais (tem o mesmo valor numérico). NaN não é igual a nada, incluindo NaN. Zeros positivos e negativos são iguals entre si. */
+
+      console.log("NaN é igual à NaN?", NaN === NaN);
+
+      /* Dois operadores Boleanos são estritamente iguais se ambos são true ou ambos são false. */
+
+      console.log("true é igual à true?", true === true);
+
+      console.log("false é igual à false?", false === false);
+
+      /* Dois objetos distintos nunca são iguais para comparações estritas ou abstratas. Uma expressão comparando Objetos somente é verdadeira se os operandos referenciarem o mesmo Objeto. */
+
+      console.log(
+        "Comparando objetos idênticos:\n",
+        { prop: "value" } === { prop: "value" }
+      );
+
+      var obj = { prop: "value" };
+
+      console.log(
+        "Comparando uma variável de objeto com um objeto literal indêntico:\n",
+        obj === { prop: "value" }
+      );
+
+      console.log("Comparando a mesma referência do objeto:\n", obj === obj);
+
+      var objCopy = obj;
+
+      console.log("Comparando referências ao mesmo objeto:\n", objCopy === obj);
+
+      /* Os tipo Null e Undefined são estritamente iguais entre eles mesmos e abstratamente iguais entre si. */
+
+      console.log("null é estritamente igual à null?", null === null);
+
+      console.log(
+        "undefined é estritamente igual à undefined?",
+        undefined === undefined
+      );
+
+      console.log("undefined é abstratamente igual à null?", undefined == null);
+    </script>
+  </body>
+</html>

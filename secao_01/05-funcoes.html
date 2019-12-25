@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Funções</title>
+  </head>
+
+  <body>
+    <script>
+      /* -----------------------------------------------------------------------
+      Funções
+      ----------------------------------------------------------------------- */
+
+      /* Uma função é um procedimento de JavaScript — um conjunto de instruções que executa uma tarefa ou calcula um valor. Para usar uma função, você deve defini-la em algum lugar no escopo do qual você quiser chamá-la. */
+
+      /* Funções como objetos de primeira classe ---------------------------- */
+
+      /* Funções em Javascript são conhecidas como objetos de primeira classe (first-class objects). Isso porque tudo o que você pode fazer com um objeto, você pode fazer com funções. Na realidade uma função é um objeto do tipo Function. */
+
+      console.log(typeof function() {});
+
+      // Função em forma literal
+      function funcaoLiteral() {}
+
+      // Funções passadas como parâmetros para outras funções (callback)
+
+      function funcaoComCallback(callback) {
+        // essa função aguarda uma outra função como argumento e a executa.
+        callback();
+      }
+
+      funcaoComCallback(function() {
+        console.log("Sou uma função de callback");
+      });
+
+      // Funções como propriedades de objetos (métodos)
+
+      var cachorro = {
+        nome: "Rex",
+        latir: function() {
+          return "Au Au Au!";
+        }
+      };
+
+      console.log("função como método: ", cachorro.latir());
+
+      // Retornadas como resultado de uma função
+
+      function construirFrase(nome, sobrenome) {
+        var nomeCompleto = nome + " " + sobrenome;
+        return "Olá " + nomeCompleto + ", Bem vindo!";
+      }
+
+      function saudacao(nome, sobrenome) {
+        return construirFrase(nome, sobrenome);
+      }
+
+      console.log(saudacao("Jonatas", "Antunes"));
+
+      /* Funções também podem possuir propriedades que podem ser atribuídas dinamicamente */
+
+      function funcaoComPropriedade() {}
+
+      funcaoComPropriedade.propTeste = "Sou uma propridade da função";
+
+      console.log("funcao com propriedade", funcaoComPropriedade.propTeste);
+
+      /* -----------------------------------------------------------------------
+      Definindo Funções
+      ----------------------------------------------------------------------- */
+
+      /* Declaração de Função ----------------------------------------------- */
+
+      /* Essa é a forma mais utilizada de definir funções. Podemos definir Declaração de Funções em qualquer lugar de nosso código inclusive dentro de outras funções. */
+
+      /* A definição da função (também chamada de declaração de função),
+       * consiste no uso da palavra chave function, seguida pelo:
+       *
+       * - Nome da Função;
+       * - Lista de argumentos, entre parênteses e separados por vírgulas;
+       * - Declarações JavaScript que definem a função, entre chaves { }
+       */
+
+      function quadrado(numero) {
+        return numero * numero;
+      }
+
+      console.log("Executando a declaração de função:", quadrado(2));
+
+      /* A declaração return especifica o valor retornado pela função. Caso não seja definido um retorno, o mesmo será definido como undefined */
+
+      function semRetorno() {
+        console.log("Vou retornar undefined");
+      }
+
+      console.log("Executando função sem retorno:", semRetorno());
+
+      /* Parâmetros com valores primitivos são passados para as funções por valor, o valor é passado para a função, mas se a função altera o valor do parâmetro, esta mudança não reflete globalmente ou na função chamada. */
+
+      function alterandoPrimitivo(primitivo) {
+        primitivo = primitivo + " modificado!";
+        return primitivo;
+      }
+
+      console.log("Primitivo como argumento:", alterandoPrimitivo(null));
+
+      console.log("O valor primitivo nunca mudará:\n", null);
+
+      /* Se passar um objeto (ou seja, um valor não primitivo, tal como Array ou um objeto definido por você) como um parâmetro, e a função alterar as propriedades do objeto, essa mudança será visível fora da função */
+
+      var carro = {
+        modelo: "Corsa",
+        ano: 2009
+      };
+
+      function alterandoValorNaoPrimitivo(naoPrimitivo) {
+        naoPrimitivo.modelo = "Celta";
+      }
+
+      alterandoValorNaoPrimitivo(carro);
+
+      console.log("Objeto modificado:\n", carro);
+
+      /* Expressão de Função ------------------------------------------------ */
+
+      /* Uma expressão de função é muito similar e tem quase a mesma sintaxe de uma declaração de função. A principal diferença entre uma expressão de função e a declaração de uma função é o nome da função, o qual pode ser omitido em expressões de funções para criar funções anônimas. (normalmente utilizadas em callbacks) */
+
+      /* O exemplo a seguir define uma função sem nome e atribui à variável o quadrado de seu argumento: */
+
+      var expressaoDeFuncaoQuadrado = function(number) {
+        return number * number;
+      };
+
+      console.log("Expressão de Função Anônima:", expressaoDeFuncaoQuadrado(5));
+
+      /* No entanto, podemos nomear uma expressão de função e utilizá-la no interior da função para referir-se a si mesma (função recursiva), ou em um debugger para identificar a função em stack traces: */
+
+      var fatorial = function fatorial(numero) {
+        return numero < 2 ? 1 : numero * fatorial(numero - 1);
+      };
+
+      console.log("Função recursiva:", fatorial(3));
+
+      /* Ao contrario de function declarations, function expressions não podem ser invocadas antes de sua definição no código. O exemplo abaixo vai gerar um erro pois a variável com a expressão de função não sofre Hoisting (veremos isso mais numa próxima aula) e ela só existe na linha em que foi atribuida: */
+
+      try {
+        expressaoInvocadaAntes();
+      } catch (error) {
+        console.log("variável foi definida?", expressaoInvocadaAntes);
+        console.log(error);
+      }
+
+      var expressaoInvocadaAntes = function() {
+        console.log("Não posso ser chamada antes de minha declaração");
+      };
+
+      /* Podemos usar expressões de funções para criar IIFE's (Immediately Invoked Function Expression), os 5 exemplos abaixo são funções que vão ser imediatamente invocadas */
+
+      (function() {
+        console.log("IIFE - Exemplo 1");
+      })();
+
+      +(function() {
+        console.log("IIFE - Exemplo 2");
+      })();
+
+      -(function() {
+        console.log("IIFE - Exemplo 3");
+      })();
+
+      !(function() {
+        console.log("IIFE - Exemplo 4");
+      })();
+
+      ~(function() {
+        console.log("IIFE - Exemplo 5");
+      })();
+
+      /* -----------------------------------------------------------------------
+      Escopo de Função
+      ----------------------------------------------------------------------- */
+
+      /* A grande maioria das linguagens possui o conceito de escopos, e JavaScript não é diferente. Escopo é a acessibilidade de objetos, variáveis e funções em diferentes partes do código. */
+
+      /* Em outras palavras, o que determina quais são os dados que podem ser acessados em uma determinada parte do código é o escopo. */
+
+      /* Imagine que escopo é uma caixa e tudo que for criado nessa caixa pode ser acessado por qualquer objeto dentro da mesma. Um escopo é criado sempre que definimos uma função: */
+
+      function hello(name) {
+        // Isto aqui é um escopo
+      }
+
+      /* Sempre que iniciamos o código, o JavaScript cria um escopo global, uma caixa maior para que possamos colocar todas as demais caixas dentro.*/
+
+      /* Quando criamos outra função dentro da função foo, estamos colocando outra caixa dentro do escopo da função, criando o que é chamado de “nested scopes”, ou escopos aninhados: */
+
+      function foo() {
+        // Escopo de foo
+        function bar() {
+          // Escopo de bar
+        }
+      }
+
+      /* Quando criamos uma variável usando 'var', ela só fica disponível dentro do seu escopo de função, porém as funções internas podem acessar variáveis do seu escopo pai. */
+
+      /* Imagine neste exemplo, que a pessoa é representada por uma função, e dentro dessa função temos alguns segredos dessa pessoa, como segredos devem ser secretos, então eles estão dentro de um escopo interno. De dentro do escopo 'interiorDaPessoa' podemos ver as variáveis externas como 'nome', porém não deixamos o escopo externo ver nossos segredos. Já a informação da banda preferida pode ser pública, então vamos cria-lá dentro da função 'bandaPreferida' sem o uso da palavra chave var, criando assim uma variável global que poderá ser acessada por escopos externos. */
+
+      function pessoa() {
+        var nome = "Jonatas";
+
+        function interiorDaPessoa() {
+          var segredo1 = "Odeio uva passa! =D";
+          var segredo2 = "Minha cor preferida é Rosa!";
+        }
+
+        function criarBandaPreferida(nomeDaBanda) {
+          bandaPreferida = nomeDaBanda;
+        }
+
+        console.log("nome:", nome);
+
+        try {
+          console.log("segredo", segredo1);
+        } catch (error) {
+          console.log(error);
+          console.log("Segredos devem ficar guardados =D!");
+        }
+
+        criarBandaPreferida("Led Zeppelin");
+
+        console.log(bandaPreferida);
+      }
+
+      pessoa();
+    </script>
+  </body>
+</html>

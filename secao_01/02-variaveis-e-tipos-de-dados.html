@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Variáveis e tipos de dados</title>
+  </head>
+
+  <body>
+    <script>
+      /* -----------------------------------------------------------------------
+      Variáveis
+      ----------------------------------------------------------------------- */
+
+      // Para declarar uma variável em Javascript utilize a palavra chave 'var'
+      var nome;
+
+      // as variáveis sem valor atribuído retornam 'undefined'
+      console.log("variável nome: ", nome);
+
+      // para atribuir algum valor, utilize a palavra chave '='
+      var nome = "Jonatas";
+
+      console.log("variável nome: ", nome);
+
+      /* -----------------------------------------------------------------------
+      Tipos de Dados
+      ----------------------------------------------------------------------- */
+
+      /* Primitivos --------------------------------------------------------- */
+
+      /* Um primitivo é um dado que não é representado através de um Objeto e, por consequência, não possui métodos. */
+
+      /* Todos os primitivos são imutáveis (não podem ter o seu valor modificado), porém à exceção do null e do undefined, todos os primitivos tem um objeto wrapper equivalente: */
+
+      /* No JavaScript, existem 6 tipos primitivos:
+       *
+       * - String;
+       * - Number;
+       * - Boolean;
+       * - Null;
+       * - undefined;
+       * - Symbol (novo no ECMAScript 6)
+       */
+
+      /* É possível verificar o tipo da variável digitando typeof + nomeDaVariavel */
+
+      var myNumber = 23;
+
+      console.log("Tipo da variável:", typeof myNumber);
+
+      /* undefined ---------------------------------------------------------- */
+
+      var x;
+
+      console.log("valor:", x);
+
+      console.log("tipo:", typeof x);
+
+      /* Number ---------------------------------------------------------- */
+
+      x = 0;
+
+      console.log("valor:", x);
+
+      console.log("tipo:", typeof x);
+
+      /* Number (Float) ----------------------------------------------------- */
+
+      x = 1.5;
+
+      console.log("valor:", x);
+
+      console.log("tipo:", typeof x);
+
+      /* String ------------------------------------------------------------- */
+
+      x = "Hello World";
+
+      console.log("valor:", x);
+
+      console.log("tipo:", typeof x);
+
+      /* Boolean ------------------------------------------------------------ */
+
+      x = true;
+
+      console.log("valor:", x);
+
+      console.log("tipo:", typeof x);
+
+      /* null --------------------------------------------------------------- */
+
+      x = null;
+
+      console.log("valor:", x);
+
+      console.log("tipo:", typeof x);
+
+      /* Array -------------------------------------------------------------- */
+
+      var frutas = [];
+
+      console.log(typeof frutas);
+
+      // inserindo valores no array
+
+      frutas = ["Banana", "Laranja", "Morango", "Melão", "Abacaxi"];
+
+      console.log(frutas);
+
+      // Utilize 'console.table' para visualizar os items em uma tabela
+
+      console.table(frutas);
+
+      // os itens do array podem ser acessados pelo seu índice (começando por 0)
+
+      console.log(frutas[0]);
+
+      /* Object ------------------------------------------------------------- */
+
+      var pessoa = {};
+
+      console.log("valor:\n", pessoa);
+
+      console.log("tipo: ", typeof pessoa);
+
+      // atribuindo valores para as propriedades do objeto
+
+      pessoa = {
+        altura: 1.9,
+        peso: 67
+      };
+
+      console.log(pessoa);
+
+      // acessando as propriedades do objeto
+
+      console.log(pessoa.altura);
+
+      // atribuindo um novo valor a uma propriedade já existente
+
+      pessoa.altura = 1.85;
+
+      console.log(pessoa.altura);
+
+      // Arrays também são do tipo 'object', as propriedades de objetos podem ser acessadas por ambas notações (a notação de objeto é mais rápida)
+
+      console.log("Notação de Array: " + pessoa["peso"]);
+
+      console.log("Notação de Objeto: " + pessoa.peso);
+    </script>
+  </body>
+</html>

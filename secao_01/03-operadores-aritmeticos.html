@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Operadores aritméticos</title>
+  </head>
+
+  <body>
+    <script>
+      /* -----------------------------------------------------------------------
+      Operadores aritméticos
+      ----------------------------------------------------------------------- */
+
+      /* Os Operadores aritméticos recebem valores numéricos (sejam literais ou variáveis) como seus operandos e retornam um único valor númerico. Os operadores aritméticos padrão são os de Adição (+), Subtração (-), Multiplicação (*) e Divisão (/). */
+
+      /* Adição ------------------------------------------------------------- */
+
+      console.log("Adição: 2 + 2 = " + (2 + 2));
+
+      /* Subtração ---------------------------------------------------------- */
+
+      console.log("Subtração: 7 - 2 = " + (7 - 2));
+
+      /* Multiplicação ------------------------------------------------------ */
+
+      console.log("Multiplicação: 4 * 3 = " + 4 * 3);
+
+      /* Divisão ------------------------------------------------------------ */
+
+      console.log("Divisão: 24 / 3 = " + 24 / 3);
+
+      /* -----------------------------------------------------------------------
+      Operadores aritméticos Abreviados (++ e --)
+      ----------------------------------------------------------------------- */
+
+      // pós incremeto de 1 (valor = valor + 1)
+
+      var x = 10;
+
+      console.log("pós incremento ", x++);
+
+      // pré incremento de 1 (valor = valor + 1)
+
+      console.log("pré incremento ", ++x);
+
+      // pós decremento de 1 (valor = valor - 1)
+
+      console.log("pós decremento ", x--);
+
+      // pré decremento de 1 (valor = valor - 1)
+
+      console.log("pré decremento ", --x);
+
+      // pós incremeto de valor específico (valor = valor + incremento)
+
+      var y = 20;
+
+      console.log("pós incremeto de valor específico", (y += 4));
+
+      // pré decremento de valor específico (valor = valor + decremento)
+      console.log("pós incremeto de valor específico", (y -= 2));
+
+      // pós incremeto com multiplicação (valor = valor * incremento)
+
+      var z = 7;
+
+      console.log("pós incremeto com multiplicação", (z *= 3));
+    </script>
+  </body>
+</html>
