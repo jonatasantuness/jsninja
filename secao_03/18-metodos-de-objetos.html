@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Métodos de objeto</title>
+</head>
+
+<body>
+  <script>
+    /* -----------------------------------------------------------------------
+    Métodos de objeto
+    ----------------------------------------------------------------------- */
+
+    /* Como as Funções são objetos de 'primeira classe' (pois podem ser atribuidas a variáveis), então um valor de propriedade também pode ser uma função (em objetos são chamadas de métodos). */
+
+    var pessoa = {
+      nome: "Jonatas",
+      idade: 27
+    };
+
+    /* para criar mais propriedades em um objeto existente, podemos utilizar a notação de ponto, neste caso, vamos adicionar uma expressão de função para ser utilizada como método */
+
+    pessoa.exibirNome = function () {
+      // Dentro de objetos a palavra 'this' referência o próprio objeto
+      return this.nome;
+    }
+
+    // invocando um método do objeto com '()'
+
+    console.log('Utilizado método:', pessoa.exibirNome());
+
+    // criando um método para modificar a propriedade 'idade' da pessoa
+    pessoa.aniversario = function () {
+      this.idade++;
+    }
+
+    pessoa.aniversario();
+
+    console.log('Nova idade:', pessoa.idade);
+  </script>
+</body>
+
+</html>

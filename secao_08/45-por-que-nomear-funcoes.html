@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>A importância de nomear funções</title>
+</head>
+
+<body>
+  <script>
+    /* -----------------------------------------------------------------------
+    A importância de nomear funções
+    ----------------------------------------------------------------------- */
+
+    /* Ao nomear uma expressão de função facilitamos nosso debug, pois iremos conseguir identificar com mais facilidade onde está o erro */
+
+    var funcaoNomeada = function funcaoNomeada() {
+      return "Sou uma expressão de função nomeada";
+    };
+
+    console.log(funcaoNomeada());
+
+    /* Function.name -------------------------------------------------------- */
+
+    /* A propriedade somente-leitura 'name' de um objeto Function indica o nome da função como especificado quando esta foi criada. Variáveis e métodos podem inferir o nome de uma função anônima a partir de sua posição sintática (novo na ECMAScript 2015).*/
+
+    console.log('Nome da fumção nomeada:', funcaoNomeada.name);
+
+    var funcaoAnonima = function () {
+      return "Sou uma função anônima";
+    };
+
+    console.log('Nome da fumção anônima:', funcaoAnonima.name);
+
+    /* se a expressão tiver um nome diferente do nome da variável, o name irá exibir o nome da expressão ao invés do nome da variável. */
+
+    var funcaoTeste = function expressaoDeFuncao() {
+      return "Tenho um expressão de função nomeada";
+    };
+
+    console.log('Retorno do name com expressão nomeada:', funcaoTeste.name);
+  </script>
+</body>
+
+</html>

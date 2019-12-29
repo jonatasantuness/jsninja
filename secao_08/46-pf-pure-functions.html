@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Programação Funcional - Funções Puras (Pure Functions)</title>
+</head>
+
+<body>
+  <script>
+    /* -----------------------------------------------------------------------
+    Programação Funcional - Funções Puras (Pure Functions)
+    ------------------------------------------------------------------------- */
+
+    /* Funções puras -------------------------------------------------------- */
+
+    /* As Funções puras são funções que dado um parâmetro input sempre vão retornar o mesmo output sem causar efeitos colaterais (side effects). E por que estamos falando sobre isso? Porque escrever funções puras e remover side-effects é a base da Programação Funcional. */
+
+    /* Side Effects ocorrem quando uma função ao ser executada causa mudanças no estado da aplicação */
+
+    /* Repare nos exemplos abaixo, que na Função Inpura, a variável x está sendo definida no estado global, sendo assim o output da função 'somaImpura' sempre dependerá da mudança de estado global e não do input passado como parâmetro, o que torna a função dependente de fatores externos. */
+
+    // Função Pura
+
+    var somaPura = function (x, y) {
+      return x + y;
+    }
+
+    console.log(somaPura(5, 10));
+
+    // Função Impura
+
+    var x = 20;
+
+    var somaImpura = function (y) {
+      return x + y;
+    }
+
+    /* Um ponto que vale ser reforçado: só porque não declaramos explicitamente os inputs e outputs dessa função, não quer dizer que ela não os tenha. Eles apenas estão ocultos. E isso pode gerar um dos piores problemas nas aplicações modernas: os Efeitos Colaterais (side-effects). */
+
+    /* Outra característica importante que elas têm é que se invocarmos uma função impura diversas vezes, o retorno nem sempre será o mesmo. O que dificulta a manutenção e os testes na sua aplicação. */
+
+    // Temos 3 grandes motivos para se usar Funções Puras:
+
+    /* Refatoração: Refatore seu código sempre que possível, funções puras te proporcionam a facilidade de mudança para que você possa observar melhorias e aplica-las sem afetar o restante de sua aplicação. */
+
+    /* Testabilidade: Pelo simples motivo de funções puras terem seus valores de entrada e saída determinados, isso vai facilitar muito a escrita de seus códigos unitários. */
+
+    /* DRY (Don’t Repeat Yourself): Reutilize suas funções! DRY (Não repita a si mesmo). */
+
+    // Devo usar apenas funções puras? - Não! funções puras mesmo oferecendo diversos benefícios, não são utilizadas em todo o projeto. Afinal de contas,se todas as funções fossem puras, não haveriam efeitos colaterais visíveis ao mundo externo. Utilize funções puras quando necessário, crie testes unitários e sem dúvidas quando houverem bugs, será mais fácil para você desvendá-los e efetuar sua correção.
+  </script>
+</body>
+
+</html>

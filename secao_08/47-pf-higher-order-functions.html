@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Programação Funcional - Funções de Ordem Superior (Higher-Order Functions)</title>
+</head>
+
+<body>
+  <script>
+    /* -----------------------------------------------------------------------
+    Programação Funcional - Funções de Ordem Superior (Higher-Order Functions)
+    ------------------------------------------------------------------------- */
+
+    /* Matematicamente falando, funções que operam sobre outras funções (as recebendo como parâmetro ou as retornando) são chamadas de Higher-Order Functions. */
+
+    /* A função calculate recebe três parâmetros. O primeiro é uma função qualquer que será invocada passando como parâmetro x e y. Pensando em um cenário em que precisamos tanto de uma adição quanto de uma subtração, podemos pensar na solução abaixo: */
+
+    var calculate = function (fn, x, y) {
+      return fn(x, y);
+    };
+
+    var soma = function (x, y) {
+      return x + y;
+    };
+
+    var subtração = function (x, y) {
+      return x - y;
+    };
+
+    console.log(calculate(soma, 2, 5)); // 7
+
+    console.log(calculate(subtração, 10, 5)); // 5
+
+    /* Justamente pelas funções serem First-Class Object, podemos passar uma função como argumento para outra função e depois executar essa função passada ou até mesmo retorná-la para ser executada posteriormente. */
+
+    /* Uma pequena nota é que as funções de ordem superior também são conhecidas como Callbacks no JavaScript. Então basicamente a ideia é a mesma com identificações diferentes. */
+  </script>
+</body>
+
+</html>

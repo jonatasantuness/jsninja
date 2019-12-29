@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Parâmetros de Funções como arrays e objetos</title>
+</head>
+
+<body>
+  <script>
+    /* -----------------------------------------------------------------------
+    Parâmetros de Funções como arrays e objetos
+    ------------------------------------------------------------------------- */
+
+    /* Arrays como parâmetro ------------------------------------------------ */
+
+    /* Da mesma forma que conseguimos retornar Arrays em funções, nós também podemos passar arrays como argumento. No exemplo abaixo vamos retornar a primeira letra do alfabeto (usando uma string para pular o índice 0) */
+
+    var alfabeto = ["Início", "A", "B", "C", "D", "E"];
+
+    function primeiraLetraDoAlfabeto(arr) {
+      return arr[1];
+    }
+
+    console.log(primeiraLetraDoAlfabeto(alfabeto)); // A
+
+    // Poderiamos também inserir o array diretamente na chamada da função:
+
+    console.log(primeiraLetraDoAlfabeto(["Início", "A", "B", "C"])); // A
+
+    /* Objetos como parâmetro ----------------------------------------------- */
+
+    var pessoa = {
+      nome: "Jonatas",
+      idade: 27
+    };
+
+    function retornaNome(obj) {
+      return obj.nome;
+    }
+
+    console.log(retornaNome(pessoa));
+  </script>
+</body>
+
+</html>

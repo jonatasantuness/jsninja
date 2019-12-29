@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Retorno de funções com arrays e objetos</title>
+</head>
+
+<body>
+  <script>
+    /* -----------------------------------------------------------------------
+    Retorno de funções com arrays e objetos
+    ------------------------------------------------------------------------- */
+
+    /* Return com Arrays ---------------------------------------------------- */
+
+    /* As funçoes só permitem um tipo de dado por vez no return, quando retornamos um Array, podemos executar a função e acessar o valor pelo index. */
+
+    function retornaArray() {
+      return ["Início", "A", "B", "C", "D", "E"];
+    }
+
+    console.log(retornaArray()[1]); // A
+
+    /* Return com Objetos --------------------------------------------------- */
+
+    /* Podemos retornar objetos no return, isso nos da a possibilidade de criar escopos através da função, e através do retorno, utilizar diversas propriedades e métodos desse objeto, podemos trabalhar com o JavaScript sem poluir o escopo global criando Design Patterns com essa lógica. */
+
+    function appTeste() {
+      return {
+        nomeDoApp: "Teste App",
+        desenvoldedor: "Jonatas",
+        assinatura: "Jonatas Developer - Teste App",
+        exibirAssinatura: function () {
+          return this.assinatura;
+        }
+      };
+    }
+
+    /* Podemos atribuir esse retorno à uma variável, e a mesma ficará disponível no escopo global, podendo utilizar seus métodos quando necessário */
+
+    var appTeste = appTeste();
+
+    console.log(appTeste);
+
+    console.log(appTeste.exibirAssinatura());
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Truthy e Falsy</title>
+</head>
+
+<body>
+  <script>
+    /* -----------------------------------------------------------------------
+    Truthy e Falsy
+    ----------------------------------------------------------------------- */
+
+    /* Quando precisamos avaliar algum valor, em uma condicional por exemplo, é necessário verificar se o valor representa true ou false. */
+
+    /* Truthy --------------------------------------------------------------- */
+
+    /* um valor truthy é um valor que se traduz em verdadeiro quando avaliado em um contexto Booleano. */
+
+    /* Todos os valores são Truthy a menos que eles sejam definidos como falsy (ou seja, exceto para false, 0, "", null, undefined, e NaN). */
+
+    if (true) console.log('É Truthy!');
+    if ({}) console.log('É Truthy!');
+    if ([]) console.log('É Truthy!');
+    if (42) console.log('É Truthy!');
+    if ("foo") console.log('É Truthy!');
+    if (new Date()) console.log('É Truthy!');
+    if (-42) console.log('É Truthy!');
+    if (3.14) console.log('É Truthy!');
+    if (-3.14) console.log('É Truthy!');
+    if (Infinity) console.log('É Truthy!');
+    if (-Infinity) console.log('É Truthy!');
+
+    /* Falsy ---------------------------------------------------------------- */
+
+    /* Um valor falsy é um valor que se traduz em falso quando avaliado em um contexto Boolean. Exemplos de valores Falsy com condicional ternário: */
+
+    console.log(false ? "É Truthy" : "É Falsy");
+    console.log(null ? "É Truthy" : "É Falsy");
+    console.log(undefined ? "É Truthy" : "É Falsy");
+    console.log(0 ? "É Truthy" : "É Falsy");
+    console.log(NaN ? "É Truthy" : "É Falsy");
+    console.log("" ? "É Truthy" : "É Falsy");
+
+    /* O operador unário de negação (!) converte para booleano e retorna seu valor inverso, então podemos dobrar este operador para retornar o valor boleano exato */
+
+    console.log('Truthy ou Falsy?', !!true);
+    console.log('Truthy ou Falsy?', !!{});
+    console.log('Truthy ou Falsy?', !!false);
+    console.log('Truthy ou Falsy?', !!"");
+  </script>
+</body>
+
+</html>

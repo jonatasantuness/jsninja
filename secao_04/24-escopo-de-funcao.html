@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Escopo de variáveis e funções</title>
+</head>
+
+<body>
+  <script>
+    /* -----------------------------------------------------------------------
+    Escopo de variáveis e funções
+    ----------------------------------------------------------------------- */
+
+    /* A grande maioria das linguagens possui o conceito de escopos, e JavaScript não é diferente. Escopo é a acessibilidade de objetos, variáveis e funções em diferentes partes do código. */
+
+    /* Em outras palavras, o que determina quais são os dados que podem ser acessados em uma determinada parte do código é o escopo. */
+
+    /* Imagine que escopo é uma caixa e tudo que for criado nessa caixa pode ser acessado por qualquer objeto dentro da mesma. Um escopo é criado sempre que definimos uma função: */
+
+    function hello(name) {
+      // Isto aqui é um escopo
+    }
+
+    /* Sempre que iniciamos o código, o JavaScript cria um escopo global, uma caixa maior para que possamos colocar todas as demais caixas dentro.*/
+
+    /* Quando criamos outra função dentro da função foo, estamos colocando outra caixa dentro do escopo da função, criando o que é chamado de “nested scopes”, ou escopos aninhados: */
+
+    function foo() {
+      // Escopo de foo
+      function bar() {
+        // Escopo de bar
+      }
+    }
+
+    /* Quando criamos uma variável usando 'var', ela só fica disponível dentro do seu escopo de função, porém as funções internas podem acessar variáveis do seu escopo pai. */
+
+    /* Imagine neste exemplo, que a pessoa é representada por uma função, e dentro dessa função temos alguns segredos dessa pessoa, como segredos devem ser secretos, então eles estão dentro de um escopo interno. De dentro do escopo 'interiorDaPessoa' podemos ver as variáveis externas como 'nome', porém não deixamos o escopo externo ver nossos segredos. Já a informação da banda preferida pode ser pública, então vamos cria-lá dentro da função 'bandaPreferida' sem o uso da palavra chave var, criando assim uma variável global que poderá ser acessada por escopos externos. */
+
+    function pessoa() {
+      var nome = "Jonatas";
+
+      function interiorDaPessoa() {
+        var segredo1 = "Odeio uva passa! =D";
+        var segredo2 = "Minha cor preferida é Rosa!";
+      }
+
+      function criarBandaPreferida(nomeDaBanda) {
+        bandaPreferida = nomeDaBanda;
+      }
+
+      console.log("nome:", nome);
+
+      try {
+        console.log("segredo", segredo1);
+      } catch (error) {
+        console.log(error);
+        console.log("Segredos devem ficar guardados =D!");
+      }
+
+      criarBandaPreferida("Led Zeppelin");
+
+      console.log(bandaPreferida);
+    }
+
+    pessoa();
+  </script>
+</body>
+
+</html>

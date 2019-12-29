@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Estrutura de repetição While</title>
+</head>
+
+<body>
+  <script>
+    /* -----------------------------------------------------------------------
+    Estrutura de repetição While
+    ------------------------------------------------------------------------- */
+
+    /* A declaração while cria um laço que executa uma rotina especifica enquanto a condição de teste for avaliada como verdadeira. A condição é avaliada antes da execução da rotina. */
+
+    var contador = 0;
+
+    while (contador < 10) {
+      console.log(contador);
+      contador++
+    }
+
+    /* como sabemos o valor '0' é 'falsy', então neste caso o while nem funcionaria pois já começa com um valor falsy. */
+
+    while (0) {
+      console.log('zero');
+    }
+
+    // Operador while descendente
+
+    var contadorMenos = 10;
+
+    while (contadorMenos > 0) {
+      console.log(contadorMenos--);
+    }
+
+    /* também da para fazer desta forma, avaliando se a condição é truthy já decrementando a variável nela */
+
+    var counterMenos = 10;
+
+    while (counterMenos--) {
+      console.log(counterMenos);
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Arrays - método "push()" e Loop "for"</title>
+</head>
+
+<body>
+  <script>
+    /* -----------------------------------------------------------------------
+    Arrays - método "push()"
+    ------------------------------------------------------------------------- */
+
+    /* Array.push() --------------------------------------------------------- */
+
+    /* O método push() adiciona um ou mais elementos ao final de um array e retorna o novo comprimento desse array. */
+
+    var frutas = ["morango", "banana"];
+
+    console.log(frutas.push("melancia"));
+
+    console.log("Array após o push:\n", frutas);
+
+    /* -----------------------------------------------------------------------
+    Loop "for"
+    ------------------------------------------------------------------------- */
+
+    /* A instrução for cria um loop que consiste em três expressões opcionais, dentro de parênteses e separadas por ponto e vírgula, seguidas por uma declaração ou uma sequência de declarações executadas em sequência. */
+
+    /*
+      for ([inicialização]; [condição]; [expressão final])
+        declaração
+    */
+
+    /* inicialização: Uma expressão (incluindo expressões de atribuição) ou declarações de variáveis. Geralmente usada para iniciar o contador de variáveis. Esta expressão pode, opcionalmente, declarar novas variáveis com a palavra chave var, porém essas variáveis não são locais no loop, isto é, elas estão no mesmo escopo que o loop for está, para criar variáveis com escopo local utilize o let (ES6) */
+
+    /* condição: Uma expressão para ser avaliada antes de cada iteração do loop. Se esta expressão for avaliada para true, declaração será executado. Este teste da condição é opcional. Se omitido, a condição sempre será avaliada como verdadeira. Se a expressão for avaliada como falsa, a execução irá para a primeira expressão após a construção loop for */
+
+    /* expressão final: Uma expressão que será validada no final de cada iteração de loop. Isso ocorre antes da próxima avaliação da condição. Geralmente usado para atualizar ou incrementar a variável do contador. */
+
+    // Utilizando o for para uma contagem de 1 à 10
+
+    for (var i = 1; i <= 10; i++) {
+      console.log('Contando até até 10:', i);
+    }
+
+    /* As três expressões na condição do loop for são opcionais. Por exemplo, no bloco de inicialização, não é necessário inicializar variáveis: */
+
+    var i = 0;
+
+    for (; i <= 3; i++) {
+      console.log('Loop For sem a primeira expressão:', i);
+    }
+
+    /* Assim como ocorre no bloco de inicialização, a condição também é opcional. Se você está omitindo essa expressão, você deve certificar-se de quebrar o loop no corpo para não criar um loop infinito. */
+
+    for (var i = 0; ; i++) {
+      console.log('Loop for sem a expressão de condição:', i);
+      if (i >= 3) break;
+    }
+
+    /* Você também pode omitir todos os três blocos. Novamente, certifique-se de usar uma instrução break no final do loop e também modificar (incrementar) uma variável, paa que a condição do break seja verdadeira em algum momento. */
+
+    var i = 0;
+
+    for (; ;) {
+      if (i > 3) break;
+      console.log("Loop for sem nenhuma expressão", i);
+      i++;
+    }
+  </script>
+</body>
+
+</html>

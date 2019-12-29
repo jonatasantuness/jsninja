@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Operadores Unários</title>
+  </head>
+
+  <body>
+    <script>
+      /* -----------------------------------------------------------------------
+      Operadores Unários (+ ou -)
+      ----------------------------------------------------------------------- */
+
+      // Um operador unário é uma operação com apenas um operando.
+
+      // os operadores unários tentam converter o valor para tipo 'Number'
+
+      console.log(typeof +"3");
+
+      /* ao somar uma string que contém numero, o javascript sempre vai concaternar, porém podemos converter a string antes com o operador unário para depois somá-la */
+
+      console.log("Concatenando:", 3 + "3");
+
+      console.log("Convertendo e somando:", 3 + +"3");
+
+      /* ao tentar converter algo que não possa virar tipo Number, será retornado NaN (Not a Number) */
+
+      console.log(+"Não Sou um Number");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Operadores Lógicos</title>
+  </head>
+
+  <body>
+    <script>
+      /* -----------------------------------------------------------------------
+      Operadores Lógicos
+      ----------------------------------------------------------------------- */
+
+      /* O JavaScript suporta 3 operadores lógicos
+       *
+       * - && (and);
+       * - || (or);
+       * - ! (not);
+       */
+
+      /* && (and) ----------------------------------------------------------- */
+
+      // considere a expressão: expr1 && expr2
+
+      /* Retorna a expr1 se essa puder ser convertido para false, senão, retorna a expr2, Dessa forma, quando usado para valores Booleanos, && retorna verdadeiro se ambos os operandos forem verdadeiro, senão, retorna falso. */
+
+      // valores não booleanos
+
+      var numero = 23;
+
+      console.log("&& - valores não booleanos", numero > 20 && numero < 30);
+      console.log(numero && "Eu sou uma string");
+      console.log("" && "Eu sou uma string");
+      console.log("Eu sou uma string" && "");
+      console.log(null && {});
+      console.log(undefined && "Eu sou uma string");
+
+      // valores booleanos
+
+      console.log("&& - valores booleanos", true && false);
+      console.log("&& - valores booleanos", false && true);
+      console.log("&& - valores booleanos", false && false);
+      console.log("&& - valores booleanos", true && true);
+
+      /* || (or) ----------------------------------------------------------- */
+
+      // considere a expressão: expr1 || expr2
+
+      /* Retorna expr1 se essa puder ser convertida para true; senão, retorna expr2. Dessa forma, quando usado para valores Booleanos, || retorna true se qualquer dos operandos for verdadeiro, se ambos são falso, retorna falso. */
+
+      // valores não booleanos
+
+      var myNumber = 23;
+
+      console.log(
+        "|| - valores não booleanos",
+        myNumber > 20 || myNumber === 30
+      );
+      console.log([] || undefined);
+      console.log({} || "Sou uma string");
+      console.log(false || 3 == 4);
+
+      // valores booleanos
+
+      console.log("|| - valores booleanos", true || false);
+      console.log("|| - valores booleanos", false || true);
+      console.log("|| - valores booleanos", true || true);
+      console.log("|| - valores booleanos", false || false);
+
+      /* Avaliação de Curto-Circuito (Short-Circuit) ------------------------ */
+
+      /* Como as expressões lógicas são avaliadas da esquerda pra direita, elas são sempre testadas para possível avaliação de "curto-circuito" ("short-circuit") utilizando as seguintes regras: */
+
+      // falso && (algo): é avaliado como falso através de curto-circuito
+      // true && (algo): é avaliado como verdadeiro através de curto-circuito
+
+      /* As regras de lógica garantem que essas avaliações estejam sempre corretas, porém, as expressões a seguir não são equivalentes, devido a precedência do operador, e reforçam a importância de que o operador do lado direito (right hand) seja uma única expressão (agrupada com o uso de parênteses, caso seja necessário). */
+
+      console.log((false && true) || true); // retorna true
+      console.log(false && (true || true)); // retorna false
+
+      /* ! (not) ----------------------------------------------------------- */
+
+      /* Retorna false se o seu operando pode ser convertido para true, senão, retorna true. */
+
+      // valores não booleanos
+
+      var otherNumber = 3;
+
+      console.log("Negação:", otherNumber !== 3);
+      console.log("Negação:", !otherNumber === 3);
+      console.log("Negação:", !otherNumber !== "3");
+
+      // valores não booleanos
+
+      console.log("Negação com booleanos:", true !== true);
+      console.log("Negação com booleanos:", !true !== true);
+      console.log("Negação com booleanos:", !true !== !false);
+    </script>
+  </body>
+</html>

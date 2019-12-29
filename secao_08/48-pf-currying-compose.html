@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Programação Funcional - Currying e Compose</title>
+</head>
+
+<body>
+  <script>
+    /* -----------------------------------------------------------------------
+    Programação Funcional - Currying e Compose
+    ------------------------------------------------------------------------- */
+
+    /* Currying ------------------------------------------------------------- */
+
+    /* O Currying é uma técnica para transformar uma função com múltiplos parâmetros em uma sequência de funções que aceitam apenas um parâmetro */
+
+    /* Se na teoria ficou confuso, na prática seria transformar essa função de saudação que recebe os parâmetros 'greet' e 'name', em uma única função que poderá ser reaproveitada: */
+
+    var greetingWithoutCurrying = function (greet, name) {
+      return greet + ", " + name + "!";
+    }
+
+    // a função sem Currying exige a entrada dos dois argumentos
+
+    console.log(greetingWithoutCurrying("Hello", "Jonatas"));
+
+    /* ao refatorar a função de saudação utilizando Currying, estamos criando uma função que retorna outra função */
+
+    var greeting = function (greet) {
+      return function (name) {
+        return greet + ", " + name + "!";
+      };
+    };
+
+    /* se executarmos a função diretamente, o retorno será literalmente a função que está dentro de greeting, então não teremos o retorno desejado que é a saudação completa */
+
+    console.log(greeting("Hello"));
+
+    /* para retornarmos a função completa podemos encadear as funções passando os parâmetros necessários */
+
+    console.log("Executando funções encadeadas:", greeting("Hello")("World"));
+
+    /* agora suponhamos que precisamos modificar o parâmetro 'greet' de forma à exibi-lo em diversas línguas, então podemos atribuir a primeira função numa variável com a língua correspondente e executar a segunda função com o parametro 'name': */
+
+    var greetPortugues = greeting("Olá");
+
+    var greetEspanhol = greeting("Hola");
+
+    console.log(greetPortugues("Jonatas"));
+
+    console.log(greetEspanhol("Jonatas"));
+
+    /* Compose -------------------------------------------------------------- */
+
+    /* Podemos compor funções pequenas para gerar outras mais complexas de forma bem fácil em JavaScript. A vantagem é o poder de usar essas funções mais complexas, de forma simples, em toda aplicação. Ou seja, aumentamos o reuso. */
+
+    /* Neste exemplo vamos criar uma função compose que receberá três subfunções auxiliares para retornarmos uma mensagem de login como "Olá, FULANO! Login realizado em 01/01/2020" */
+
+    /* As funções devem executar na seguinte ordem, uma função que receberá o nome e o formatará em caixa alta, outra função que ira inserir a saudação do usuário e uma outra para inserir informação da data do login */
+
+    var upperCase = function (name) {
+      return name.toUpperCase();
+    };
+
+    var insertGreet = function (formatedName) {
+      return "Olá, " + formatedName + "!";
+    };
+
+    var insertDateLogin = function (formatedGreet) {
+      var date = new Date();
+      var dia = date.getDay();
+      var mes = date.getMonth();
+      var ano = date.getFullYear();
+      var dataCompleta = dia + "/" + mes + "/" + ano;
+      return formatedGreet + " Login realizado em " + dataCompleta;
+    };
+
+    /* O compose vai receber três funções por parâmetro e irá executá-las na ordem necessária (da direita para esquerda), neste caso, precisamos primeiro atribuir o retorno de compose na variável 'loggedMessage', para assim, podermos invocar as subfunções passando um nome como argumento. */
+
+    var compose = function (upperCase, insertGreet, insertDateLogin) {
+      return function (nome) {
+        return insertDateLogin(insertGreet(upperCase(nome)));
+      }
+    };
+
+    var loggedMessage = compose(
+      upperCase,
+      insertGreet,
+      insertDateLogin
+    );
+
+    console.log("Retorno do compose:\n", loggedMessage);
+
+    console.log(loggedMessage("jonatas"));
+  </script>
+</body>
+
+</html>

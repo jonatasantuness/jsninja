@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Operador virgula e estrutura condicional Switch</title>
+</head>
+
+<body>
+  <script>
+    /* -----------------------------------------------------------------------
+    Operador virgula
+    ------------------------------------------------------------------------- */
+
+    /* O operador vírgula junta varias expressões em uma única expressão. O JavaScript vai ler da esquerda para direita, como se o 'var' valesse para todas as variáveis e as variáveis que não receberem valor serão undefined.*/
+
+    var a, b = 2, c;
+
+    console.log('variavel b', b);
+    console.log('variavel C', c);
+
+    function myFunc() {
+      var frase = "Hello";
+      /* o operador vírgula avalia o valor de seus operandos (da esquerda para a direita) e retorna o valor do último operando. */
+      return (frase += " World!", frase);
+    }
+
+    console.log(myFunc());
+
+    /* -----------------------------------------------------------------------
+    Estrutura Condicional Switch
+    ------------------------------------------------------------------------- */
+
+    /* A condicional switch avalia uma expressão, combinando o valor da expressão para um cláusula case, e executa as instruções associadas à ele */
+
+    /* Se a condição for correspondida, o programa executa as instruções asssociadas. Se múltiplos casos corresponderem o valor, o primeiro caso que corresponder é selecionado, mesmo se os casos não forem iguais entre si. */
+
+    /* Caso nenhum caso seja correspondido, então a cláusula opicional default é acionada. Se não ouver uma cláusula default, o programa continua a execução da instrução seguindo para o final do switch. */
+
+    /* Se você esquecer um break então o script irá rodar a partir do caso onde o critério foi correspondido e irá rodar também o caso seguinte independentemente do critério ter sido correspondido ou não */
+
+    function semana(numeroDaSemana) {
+      switch (numeroDaSemana) {
+        case 1:
+          console.log('domingo');
+          break;
+        case 2:
+          console.log('segunda');
+          break;
+        case 3:
+          console.log('terça');
+          break;
+        case 4:
+          console.log('quarta');
+          break;
+        case 5:
+          console.log('quinta');
+          break;
+        case 6:
+          console.log('sexta');
+          break;
+        case 7:
+          console.log('sabado');
+          break;
+        default:
+          console.log('Digite um numero valido');
+      }
+    }
+
+    // testando o Switch com os dias da semana
+
+    for (var i = 1; i < 7; i++) {
+      console.log(semana(i));
+    }
+  </script>
+</body>
+
+</html>

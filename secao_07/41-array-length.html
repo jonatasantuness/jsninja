@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Arrays - a propriedade length</title>
+</head>
+
+<body>
+  <script>
+    /* -----------------------------------------------------------------------
+    Arrays - a propriedade length
+    ------------------------------------------------------------------------- */
+
+    /* A propriedade length representa um número, que especifíca a quantidade de elementos em um array. */
+
+    // arr.length
+
+    var numeros = [0, 1, 2, 3, 4, 5];
+
+    console.log("Tamanho do Array:", numeros.length);
+
+    /* Iterando sobre um array ---------------------------------------------- */
+
+    /* No exemplo a seguir o array 'frutas' é iterado considerando a propriedade length para ver quantos elementos ele tem. O índice e o valor de cada elemento será exibido no console */
+
+    var frutas = ["morango", "abacaxi", "banana"];
+
+    for (var index = 0; index < frutas.length; index++) {
+      console.log(index + " : " + frutas[index]);
+    }
+  </script>
+</body>
+
+</html>

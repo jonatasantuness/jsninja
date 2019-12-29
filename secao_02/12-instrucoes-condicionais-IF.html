@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Instruções condicionais - IF</title>
+</head>
+
+<body>
+  <script>
+    /* -----------------------------------------------------------------------
+    Instruções condicionais - IF
+    ----------------------------------------------------------------------- */
+
+    /* A condicional if é uma estrutura condicional que executa a afirmação, dentro do bloco, se determinada condição for verdadeira. Se for falsa, executa as afirmações dentro de else. */
+
+    // if (condição) afirmação1 [else afirmação2]
+
+    // condição: É uma expressão que pode ser avaliada como true ou false
+
+    /* afirmação1: Condicional que será executada caso a condição em if seja verdadeira (true) */
+
+    /* afirmação2: Condicional que será executada caso a condição em if seja avaliada como falsa (false) e a condição else exista. */
+
+    var numero = 23;
+
+    /* Utilizando o operador 'módulo' (%) para checar se o 'resto' da divisão por 2 é igual à 0, o que siginifica que o número é Par */
+
+    if (numero % 2 === 0) {
+      console.log("O numero é par");
+    } else {
+      console.log("O numero é impar");
+    }
+
+    /* Múltiplas condicionais if ... else podem ser aninhados quando necessário. */
+
+    var x = 30;
+
+    if (x > 30) {
+      console.log("O numero é maior que 30");
+    } else if (x === 30) {
+      console.log("O número é igual a 30");
+    } else {
+      console.log("O numero é menor que 30");
+    }
+
+    /* Podemos utilizar o if sem chaves, ou até em uma linha, se a indentação estiver correta. */
+
+    if (false)
+      console.log("Sem usar chaves!");
+    else
+      if (false)
+        console.log("Utilizando indentação correta! (IF)");
+      else
+        console.log("Utilizando indentação correta! (Else)");
+
+
+    if (true) console.log("Sem usar chaves!");
+  </script>
+</body>
+
+</html>

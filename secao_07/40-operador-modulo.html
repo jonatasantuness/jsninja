@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>O operador módulo</title>
+</head>
+
+<body>
+  <script>
+    /* -----------------------------------------------------------------------
+    O operador módulo (%)
+    ------------------------------------------------------------------------- */
+
+    /* Retorna o resto da divisão entre dois operandos. */
+
+    console.log("módulo sem resto: " + 4 % 2);
+
+    console.log("módulo com resto: " + 5 % 2);
+
+    /* Como todo número par divido por 2 tem 0 de 'resto', podemos utilizar o módulo para verificar se numeros são par ou ímpar */
+
+    function parOuImpar(numero) {
+      return numero % 2 === 0 ? "Par" : "ímpar";
+    }
+
+    console.log(parOuImpar(10));
+
+    console.log(parOuImpar(5));
+  </script>
+</body>
+
+</html>
