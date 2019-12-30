@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Hoisting</title>
+</head>
+
+<body>
+  <script>
+    /* -----------------------------------------------------------------------
+    Hoisting
+    ------------------------------------------------------------------------- */
+
+    /* Em JavaScript, funções e variáveis são hoisted (ou "levados ao topo"). Hoisting é um comportamento do JavaScript de mover declarações para o topo de um escopo (o escopo global ou da função em que se encontra). */
+
+    /* Hoisting em Variáveis ------------------------------------------------ */
+
+    /* Toda vez que declaramos uma variável, sua declaração é hoisted, mas a sua inicialização não, isso significa que a declaração da variável vai para cima do escopo antes mesmo do código ser executado, e se a mesma não receber nenhum valor, permanecerá como undefined. */
+
+    // veja o seguinte exemplo:
+
+    console.log(nome);
+
+    var nome = "Jonatas";
+
+    // O código acima será reorganizado pelo JavaScript dessa forma:
+
+    var nomeExample; // undefined
+
+    console.log(nomeExample);
+
+    nomeExample = "Jonatas";
+
+    /* Ou, seja, o console irá retornar undefined por que a atribuição do valor à variável "nomeExample" só aconteceu na linha de baixo do console, porém sua declaração foi para cima. */
+
+    /* Hoisting em Funções -------------------------------------------------- */
+
+    /* O Hoisting também acontece para as Declarações de Funções (Funções Literais), não só o nome da função é hoisted como seu corpo também */
+
+    // Vamos executar a função linhas antes dela ser criada
+    console.log(exibirFrase());
+
+    function exibirFrase() {
+      return "Sou uma função hoisted";
+    }
+
+    /* Como as declarações de funções sofrem Hoisting, caso duas funções tenham o mesmo nome, a que vai prevalecer é a ultima declarada. */
+
+    function exibirNome() {
+      function nome() {
+        return "Antunes"
+      }
+
+      return nome();
+
+      function nome() {
+        return "Jonatas"
+      }
+    }
+
+    console.log(exibirNome());
+
+    /* O corpo de Expressões de Funções não sofrem Hoisting, no exemplo abaixo, como a expressão de função está associada à uma variável, logo, a variável "soma" irá subir no escopo como 'undefined', enquanto que o corpo da função ficará perdido abaixo do return. */
+
+    function myfunction() {
+      var num1 = 5;
+      var num2 = 10;
+
+      return soma();
+
+      var soma = function () {
+        return num1 + num2;
+      }
+    }
+
+    try {
+      console.log(myfunction());
+    } catch (error) {
+      console.log(error);
+      console.log("a variável soma é undefined");
+    }
+  </script>
+</body>
+
+</html>

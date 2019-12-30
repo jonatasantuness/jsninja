@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Closure</title>
+</head>
+
+<body>
+  <script>
+    /* -----------------------------------------------------------------------
+    Closure
+    ------------------------------------------------------------------------- */
+
+    /* Um closure (fechamento) é uma função que se "lembra" do ambiente — ou escopo léxico — em que ela foi criada. */
+
+    /* Escopo léxico -------------------------------------------------------- */
+
+    /* No exemplo abaixo, exibirNome() é uma função aninhada (um closure) definida dentro da função pessoa(), ou seja, ela está disponível somente dentro do corpo da função pessoa(). */
+
+    /* Diferente da função pessoa(), a função exibirNome() não tem variáveis locais próprias, e ao invés disso ela reusa a variável 'nome' declarada na função pai. */
+
+    /* Este é um exemplo de escopo léxico: em JavaScript, o escopo de uma variável é definido por sua localização dentro do código fonte (isto é aparentemente léxico) e funções aninhadas têm acesso às variáveis declaradas em seu escopo externo. */
+
+    function pessoa() {
+      var nome = "Jonatas";
+
+      function exibirNome() {
+        return nome;
+      }
+
+      return exibirNome();
+    }
+
+    console.log(pessoa());
+
+    /* Closure é a forma de fazer com que as variáveis dentro de uma função sejam privadas e persistentes. */
+
+    /* O código abaixo pode parecer confuso, afinal, o que uma função está fazendo dentro da outra? E pra quê eu preciso retornar a função que eu declarei lá dentro? */
+
+    /* O escopo léxico faz com que a função filho tenha acesso às variáveis definidas pela função pai, então nós pegamos a função filho e a retornamos como um valor (no caso, retornamos a função à qual filho faz referência). */
+
+    function pai() {
+      var x = 0;
+
+      function filho() {
+        x++;
+        return x;
+      }
+
+      return filho;
+    }
+
+    /* A função filho possui uma referência ao escopo da função pai, e a essa referência nós damos o nome de closure. */
+
+    var contador = pai();
+
+    /* Após executarmos a função pai, nós atribuímos o valor que ela retorna (no caso, a função filho) para uma nova variável chamada contador. */
+
+    /* O simples fato de atribuirmos a função filho para uma variável, faz com que a função filho ainda seja necessária, da mesma forma que as variáveis que ela utiliza (o 'x' no escopo da função pai) e isso faz com que a função pai também seja necessária. OU SEJA, esses dados não serão coletados pelo garbage collector da engine, fazendo com que a informação ali contida seja persistente e possa ser utilizada fora de seu escopo estático. */
+
+    console.log(contador);
+
+    console.log(contador()); // 1
+
+    console.log(contador()); // 2
+
+    console.log(contador()); // 3
+
+    /* Módulos -------------------------------------------------------------- */
+
+    /* Módulos são estruturas de código que fazem bom uso das closures, vamos a um exemplo que apresenta bem seu funcionamento: */
+
+    function counter() {
+      var contador = 0;
+
+      var incrementar = function () {
+        contador++;
+        return contador;
+      };
+
+      var decrementar = function () {
+        contador--;
+        return contador;
+      };
+
+      return {
+        incrementar: incrementar,
+        decrementar: decrementar
+      };
+    }
+
+    /* Para que a criação do escopo interno e as closures aconteçam, primeiramente precisamos executar a função counter(), essa função irá retornar um objeto com referências para as funções internas, pode-se dizer que esse objeto é então uma API pública para o nosso módulo. */
+
+    var counter = counter();
+
+    /* A variável "contador" não pode ser acessada fora do escopo de counter(), já que ela é privada. (Para torná-la pública, ela precisaria estar no return da função) */
+
+    console.log("Variável privada:", counter.contador); // undefined
+
+    /* Como a variável 'contador' também é persistente, graças à closure. Sempre que chamamos pelas funções incrementar() e decrementar() dentro do nosso módulo, o valor dela será alterado, sem ser reiniciado. */
+
+    console.log("Módulo Counter - Incrementar:", counter.incrementar()); // 1
+
+    console.log("Módulo Counter - Incrementar:", counter.incrementar()); // 2
+
+    console.log("Módulo Counter - Incrementar:", counter.incrementar()); // 3
+
+    console.log("Módulo Counter - Decrementar:", counter.decrementar()); // 2
+  </script>
+</body>
+
+</html>

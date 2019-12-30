@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>IIFE - Imediately Invoked Function Expression</title>
+</head>
+
+<body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <script>
+    /* -----------------------------------------------------------------------
+    IIFE - Imediately Invoked Function Expression (Expressão de Função Invocada Imediatamente)
+    ------------------------------------------------------------------------- */
+
+    /* IIFE (Immediately Invoked Function Expression) é uma função em JavaScript que é invocada assim que definida para que o seu conteúdo seja executado. */
+
+    /* É um Design Pattern também conhecido como Self-Executing Anonymous Function e contém duas partes principais: */
+
+    /* A primeira é a função anônima cujo escopo léxico é encapsulado entre parênteses. Isso previne o acesso externo às variáveis declaradas na IIFE, bem como evita que estas variáveis locais poluam o escopo global. */
+
+    /* A segunda parte corresponde à criação da expressão (), por meio da qual o interpretador JavaScript avaliará e executará a função. */
+
+    (function () {
+      var nome = "Jonatas";
+      /* A função se torna uma expressão que é imediatamente executada. A variável dentro da expressão não pode ser acessada fora de seu escopo. */
+      console.log(nome);
+    })();
+
+    /* Para executar uma declaração de função (função literal) precisamos invocá-la a partir do seu nome, ou se for uma expressão de função, podemos executá-la a partir do nome de uma variável. */
+
+    /* A princípio não seria possível executar funções diretamente, porém se colocarmos a função dentro de parênteses o JavaScript entenderá que ela é uma expressão (seria como atribuir uma expressão de função à variável por exemplo), e assim conseguiremos invocá-la com () */
+
+    (function () {
+      console.log("Estou em uma IIFE");
+    })();
+
+    /* Atribuir uma IIFE a uma variável não armazenará a função em si, mas o resultado da função. */
+
+    var resultado = (function () {
+      var configIIFE = {
+        nome: "IIFE de Teste",
+        ano: 2020,
+        exibirNome: function () {
+          return this.nome;
+        }
+      };
+
+      return configIIFE;
+    })();
+
+    console.log(resultado);
+
+    console.log(resultado.exibirNome());
+
+    /* Uma das maiores vantagens de se utilizar IIFE é a questão do escopo. Tudo o que você declara fora de uma função, faz parte do escopo global. No Javascript, se você declarar uma variável dentro de blocos (if, while, for, etc), você ainda será capaz de consultar o seu valor, pois escopos só são definidos por um bloco de função */
+
+    (function () {
+      for (var index = 1; index <= 3; index++) {
+        console.log("Index:", index);
+      }
+    })();
+
+    console.log(window.index); // a variável index dentro da IIFE não vazou
+
+    /* Parâmetros na IIFE --------------------------------------------------- */
+
+    /* Como qualquer função normal, você pode, ao invocar a IIFE, passar parâmetros para ela. O motivo de passar parâmetros é também escopo. Você pode passar um parâmetro que está no escopo global, para que ele seja usado como uma variável local com o nome que quiser. Um exemplo bastante comum é o jQuery: */
+
+    (function ($, win, doc) {
+      win.console.log("Estou utilizando uma variável local");
+
+      // Bloco de código utilizando Jquery
+      $(document).ready(function () {
+        console.log("Exemplo de código com Jquery");
+      });
+    })(jQuery, window, document);
+
+    /* O undefined na IIFE -------------------------------------------------- */
+
+    /* o undefined não é um operador, como o new ou o void, O undefined é uma propriedade do objeto global, ou seja, é uma variável no escopo global. O valor inicial de undefined é o valor primitivo undefined. no EcmaScript 3, era permitido mudar o valor da propriedade global de undefined. */
+
+    /* A partir do ES5 podemos resolver esse problema utilizando na parte superior do código, uma diretiva "use strict" para ativar um "modo estríto" do JavaScript, porém caso o código não tenha essa diretiva, a IIFE impede que o undefined seja reescrevido */
+
+    (function ($, window, document, undefined) {
+      undefined = "Sobrescrevendo o undefined";
+
+      console.log("undefined local sem Strict Mode:", undefined);
+    })(jQuery, window, document);
+
+    // o undefined global contínua intacto
+
+    console.log("undefined global:", undefined);
+  </script>
+</body>
+
+</html>

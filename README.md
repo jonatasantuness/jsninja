@@ -50,6 +50,10 @@
   - [47. Programação Funcional - Funções de Ordem Superior (Higher-Order Functions)](./secao_08/47-pf-higher-order-functions.html)
   - [48. Programação Funcional - Currying e Compose](./secao_08/48-pf-currying-compose.html)
 
+- Seção 9
+
+  - [52. Closure](./secao_09/52-closure.html)
+
 ## Referências
 
 - [Repositório do curso](https://github.com/da2k/curso-javascript-ninja)
