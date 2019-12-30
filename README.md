@@ -53,6 +53,8 @@
 - Seção 9
 
   - [52. Closure](./secao_09/52-closure.html)
+  - [53. Hoisting](./secao_09/53-hoisting.html)
+  - [54. IIFE](./secao_09/54-IIFE.html)
 
 ## Referências
 
