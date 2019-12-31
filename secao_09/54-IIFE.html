@@ -94,6 +94,12 @@
     // o undefined global contínua intacto
 
     console.log("undefined global:", undefined);
+
+    /* Em alguns casos, ao compilar o JavaScript já espera uma Function Expression, então não precisamos colocar o grupo de operadores. */
+
+    var iife = function () { return "IIFE atribuída à variável"; }();
+
+    console.log(iife);
   </script>
 </body>
 

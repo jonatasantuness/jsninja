@@ -56,6 +56,11 @@
   - [53. Hoisting](./secao_09/53-hoisting.html)
   - [54. IIFE](./secao_09/54-IIFE.html)
 
+- Seção 10
+
+  - [59. Wrapper Objects](./secao_10/59-wrapper-objects.html)
+  - [60. typeof](./secao_10/60-typeof.html)
+
 ## Referências
 
 - [Repositório do curso](https://github.com/da2k/curso-javascript-ninja)

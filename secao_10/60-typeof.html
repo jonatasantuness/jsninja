@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>typeof</title>
+</head>
+
+<body>
+  <script>
+    /* -----------------------------------------------------------------------
+    typeof
+    ------------------------------------------------------------------------- */
+
+    /* O operador typeof retorna uma string indicando o tipo de um operando. O operador typeof pode ser utilizado da seguinte maneira: */
+
+    // typeof operando
+
+    // undefined
+
+    console.log("undefined:", typeof undefined);
+
+    // boolean
+
+    console.log("boolean:", typeof true);
+
+    // number
+
+    console.log("number:", typeof 23);
+
+    console.log("number (float):", typeof 23.50);
+
+    console.log("number (NaN):", typeof NaN);
+
+    // string
+
+    console.log("string:", typeof "Jonatas");
+
+    // function
+
+    console.log("function:", typeof function myFunc() { });
+
+    /* Qualquer outro tipo de dado que não seja um Tipo Primitivo (exceto o null) ou uma Function vai retornar "object", então o typeof pode ser realizado sem problemas para validações em condicionais com tipos primitivos, para outros tipos é necessário tomar cuidado! */
+
+    // array
+
+    console.log("array:", typeof []);
+
+    // object
+
+    console.log("object:", typeof {});
+
+    /* null: Por que o null retorna object apesar de ser primitivo? - Existe um erro de implementação no JavaScript e por isso ele retorna object, para validar tipos nulos em condicionais é necessário utilizar o operador de igualdade estrita. */
+
+    console.log("null:", typeof null);
+
+    var nulo = null;
+
+    if (nulo === null) {
+      console.log("Atenção, valor nulo!");
+    }
+  </script>
+</body>
+
+</html>

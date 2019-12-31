@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Wrapper Objects</title>
+</head>
+
+<body>
+  <script>
+    /* -----------------------------------------------------------------------
+    Wrapper Objects
+    ------------------------------------------------------------------------- */
+
+    /* Já sabemos que Valores Primitivos NÃO são objetos, mas então por que em strings por exemplo, nós conseguimos acessar uma propriedade chamada 'length'? por que eles tem propriedades?*/
+
+    var teste = "JavaScipt Ninja";
+
+    console.log(teste.length);
+
+    // Com o typeof podemos confimar que estamos usando uma string de fato
+
+    console.log(typeof teste);
+
+    /* Construtores -------------------------------------------------- */
+
+    /* Os métodos construtores criam novos objetos a partir da palavra chave "new", podemos criar novos objetos a partir dos Wrapper Objects que representam os tipos primitivos: */
+
+    var nome = new String("Jonatas");
+
+    var age = new Number(27);
+
+    var ninja = new Boolean(false);
+
+    /* neste exemplo abaixo, ao invés do typeof retornar o tipo "string", é retornando o tipo "object" */
+
+    console.log(typeof nome);
+
+    /* Ou, seja, voltando ao exemplo da variável "teste", quando utilizamos a propriedade "length" ou qualquer outro método que pertença ao objecto do tipo primitivo, a variável é envolvida com um objeto do tipo correspondente em tempo de execução para que possar acessar suas propriedades e métodos, depois de utilizado, esse objeto é descartado da memória. Já uma variável inicializada com o new já é um objeto e possui esses acessos normalmente. */
+
+    /* Quanto utilizamos esses métodos sem o new, eles se transformam em conversores de tipo: */
+
+    var converteParaString = String(23);
+
+    var converteParaNumber = Number("30");
+
+    var converteParaBoolean = Boolean(0);
+
+    console.log(converteParaString);
+
+    console.log(converteParaNumber);
+
+    console.log(converteParaBoolean);
+  </script>
+</body>
+
+</html>
