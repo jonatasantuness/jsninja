@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Loops</title>
+</head>
+
+<body>
+  <script>
+    /* -----------------------------------------------------------------------
+    Loops
+    ------------------------------------------------------------------------- */
+
+    /* O loop de programação é como fazer a mesma coisa repetidas vezes - o que é chamado de iteração na linguagem de programação. */
+
+    /* do ... while --------------------------------------------------------- */
+
+    /* Em um loop do ... while, o código dentro das chaves é sempre executado uma vez antes da verificação ser feita para ver se deve ser executada novamente (no while e para, a verificação vem primeiro, então o código pode nunca ser executado ). */
+
+    var counter = 0;
+
+    do {
+      console.log(counter);
+      counter++
+    } while (counter <= 10);
+
+    /* for...in ------------------------------------------------------------- */
+
+    /* O laço for...in  interage sobre propriedades enumeradas de um objeto, na ordem original de inserção.  O laço pode ser executado para cada propriedade distinta do objeto. */
+
+    var produto = {
+      nome: "Macbook Pro",
+      categoria: "Notebooks",
+      preco: 3000.00
+    }
+
+    for (var prop in produto) {
+      console.log(prop + ": " + produto[prop]);
+    }
+
+    /* O laço for...in somente iterage sobre propriedades enumeradas. Objetos criados a partir de construtores built-in (arrays e object) herdam propriedades não enumeradas de object.prototype e String.prototype, assim como método String's indexOf() ou Object's toString(). O laço irá iterar sobre todas as propriedades enumeráveis do próprio objeto e somente aquelas enumeráveis herdadas de construtores de objetos prototype. */
+
+    var triangle = {
+      a: 1,
+      b: 2,
+      c: 3
+    };
+
+    function ColoredTriangle() {
+      this.color = "red";
+    }
+
+    ColoredTriangle.prototype = triangle;
+
+    var objTriangle = new ColoredTriangle();
+
+    /* A função seguinte toma como argumento um objeto. O laço for...in iterage sobre todos as propriedades enumeráveis do objeto e retorna uma string com o nome das propriedades e seus respectivos valores. */
+
+    for (var prop in objTriangle) {
+      console.log("objTriangle: " + prop + " = " + objTriangle[prop]);
+    }
+
+    /* Se você quer considerar somente as propriedades do próprio objeto e não as herdadas via prototype, use getOwnPropertyNames() ou execute hasOwnProperty(). A função seguinte ilustra o uso de hasOwnProperty(): as propriedades herdadas não são exibidas. */
+
+    for (var prop in objTriangle) {
+      if (objTriangle.hasOwnProperty(prop)) {
+        console.log("objTriangle." + prop + " = " + objTriangle[prop]);
+      }
+    }
+
+    /* O "in" também pode ser usado para verificar se uma propriedade existe no objeto, o retorno e booleano: */
+
+    var animal = {
+      nome: "Gato",
+      classe: "Mamíferos",
+      familia: "Felinos"
+    }
+
+    console.log("motor" in animal); // false
+  </script>
+</body>
+
+</html>

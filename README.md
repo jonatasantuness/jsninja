@@ -61,6 +61,12 @@
   - [59. Wrapper Objects](./secao_10/59-wrapper-objects.html)
   - [60. typeof](./secao_10/60-typeof.html)
 
+- Seção 11
+
+  - [66. Loops](./secao_11/66-loops.html)
+  - [67. Saltos](./secao_11/67-saltos.html)
+
+
 ## Referências
 
 - [Repositório do curso](https://github.com/da2k/curso-javascript-ninja)
