@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Criando Objetos</title>
+</head>
+
+<body>
+  <script>
+    /* -----------------------------------------------------------------------
+    Criando Objetos
+    ------------------------------------------------------------------------- */
+
+    // Diferentemente dos tipo primitivos, os objetos são mutáveis.
+
+    var obj = {
+      nome: "Objeto Teste"
+    }
+
+    console.log(obj);
+
+    // Podemos adicionar propriedades:
+
+    obj.propteste = "Propriedade adicionada";
+
+    console.log(obj.propteste);
+
+    // Podemos deletar propriedades:
+
+    delete obj.propteste;
+
+    console.log("Propriedade deletada", obj.propteste);
+
+    /* Os objetos são manipulados por referência, ou seja, cada objeto criado é diferente um do outro e possui seu próprio espaço reservado na memória, mesmo que eles possuam propriedades idênticas: */
+
+    var primeiroObjeto = {
+      prop1: "prop1",
+      prop2: "prop2",
+    }
+
+    var segundoObjeto = {
+      prop1: "prop1",
+      prop2: "prop2",
+    }
+
+    // Os objetos acima são diferentes:
+
+    console.log(primeiroObjeto === segundoObjeto); // false
+
+    /* Se atribuirmos um objeto já existente à uma outra variável, então eles compartilharão o espaço reservado na memória, ou seja, a variável estará referenciando seu objeto original */
+
+    var terceiroObjeto = primeiroObjeto;
+
+    console.log(terceiroObjeto === primeiroObjeto); // true
+
+    /* então, se modificarmos a variável, também estaremos modificando o objeto original, e vice-versa. */
+
+    terceiroObjeto.prop3 = "modificando por referência, a partir da variável";
+
+    console.log(primeiroObjeto.prop3);
+
+    primeiroObjeto.prop4 = "modificando por referência, a partir do objeto original";
+
+    console.log(terceiroObjeto.prop4);
+
+    /* Existem formas diferentes de se criar objetos, podemos criar Objetos Literais, objetos com o construtor "new" ou com o método Object.create() */
+
+    /* Objeto Literal ------------------------------------------------------- */
+
+    /* É a forma tradicional como criamos objetos, você simplesmente cria uma lista de pares chave: valor, separados por vírgula. */
+
+    var objetoLiteral = {
+      prop1: "valor1",
+      prop2: "valor2"
+    }
+
+    console.log(objetoLiteral);
+
+    /* Construtor (new) ----------------------------------------------------- */
+
+    /* Para definir um tipo de objeto, crie uma função para o tipo de objeto que especifique seu nome, suas propriedades e seus métodos. Por exemplo, suponha que você queira criar um tipo objeto para carros. Você quer que esse tipo de objeto seja chamado carro, e você quer ele tenha propriedades de marca, modelo, e ano. Para fazer isto, você escreveria a seguinte função: */
+
+    // por convenção, utilize letra inicial maiúscula em funções construtoras
+
+    function Carro(marca, modelo, ano) {
+      this.marca = marca;
+      this.modelo = modelo;
+      this.ano = ano;
+    }
+
+    // Crie uma instância do objeto com new passando as propriedades
+
+    var meucarro = new Carro("Chevrolet", "Monza", 1994);
+
+    console.log(meucarro);
+
+    /* Object.create() ----------------------------------------------------- */
+
+    /* Esse método pode ser muito útil, pois permite que você escolha o objeto protótipo para o objeto que você quer criar, sem a necessidade de se definir uma função construtora. O objeto criado irá herdar as propriedades do objeto de origem. */
+
+    var objetoCreateComida = {
+      tipo: "",
+      exibirTipo: function () {
+        return this.tipo;
+      }
+    }
+
+    var banana = Object.create(objetoCreateComida);
+
+    banana.tipo = "fruta";
+
+    console.log(banana);
+
+    console.log(banana.exibirTipo());
+
+    // Se fizermos o for...in, as propriedades herdadas também serão exibidas:
+
+    for (var prop in banana) {
+      console.log("propriedade: " + prop + "\nvalor: " + banana[prop]);
+    }
+
+    /* Podemos utilizar o método hasOwnProperty() para exibir somente as propriedades próprias do objeto */
+
+    for (var prop in banana) {
+      if (banana.hasOwnProperty(prop)) {
+        console.log(
+          "propriedade própria: " + prop + "\nvalor: " + banana[prop]
+        );
+      }
+    }
+  </script>
+</body>
+
+</html>

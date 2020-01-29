@@ -66,6 +66,12 @@
   - [66. Loops](./secao_11/66-loops.html)
   - [67. Saltos](./secao_11/67-saltos.html)
 
+- Seção 12
+
+  - [71. Criando Objetos](./secao_12/71-criando-objetos.html)
+  - [73. Métodos de Objetos](./secao_12/73-metodos-de-objetos.html)
+  - [74. Métodos de Arrays](./secao_12/74-metodos-de-arrays.html)
+
 
 ## Referências
 

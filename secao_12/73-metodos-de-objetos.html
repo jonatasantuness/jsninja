@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Métodos de Objetos</title>
+</head>
+
+<body>
+  <script>
+    /* -----------------------------------------------------------------------
+    Métodos de Objetos
+    ------------------------------------------------------------------------- */
+
+    /* Object.keys() -------------------------------------------------------- */
+
+    /* Retorna um array de propriedades enumeraveis de um determinado objeto, na mesma ordem em que é fornecida por um laço for...in (a diferença é que o laço enumera propriedades que estejam na cadeia de protótipos). */
+
+    var teste = {
+      prop1: "valor1",
+      prop2: "valor2"
+    }
+
+    console.log(Object.keys(teste));
+
+    // podemos aproveitar este array para verificar o numero de propriedades
+
+    console.log("numero de propriedades: ", Object.keys(teste).length);
+
+    /* Object.isPrototypeOf() ----------------------------------------------- */
+
+    /* Verifica se um objeto é protótipo de outro, para testarmos vamos criar um objeto com o método Object.create() a partir do objeto do exemplo anterior: */
+
+    var testeCreated = Object.create(teste);
+
+    console.log("Objeto criado:\n", testeCreated);
+
+    console.log(
+      "O objeto 'testeCreated' é prototipo do objeto 'teste'?", teste.isPrototypeOf(testeCreated)
+    );
+
+    /* JSON.stringify() ----------------------------------------------------- */
+
+    /* Converte um valor em JavaScript para uma notação JSON que o representa, pode ter uma função modificadora para o processo de conversão e um parâmetro com a configuração da indentação */
+
+    // JSON.stringify(valor[, replacer[, indentação]])
+
+    /* Boolean, Number, and String os objetos são convertidos para os valores primitivos correspondentes durante a stringificação, de acordo com a semântica de conversão. */
+
+    console.log(JSON.stringify(true));
+
+    console.log(JSON.stringify("Jonatas"));
+
+    console.log(JSON.stringify(23));
+
+    console.log(JSON.stringify(["false", false, 0]));
+
+    console.log(JSON.stringify({
+      nome: "Jonatas",
+      idade: 27,
+      possuiFaculdade: true
+    }));
+
+    // Em Objetos, o undefined, Functions e Symbols (ES6) são omitidos:
+
+    console.log(JSON.stringify({
+      teste: undefined
+    }));
+
+    console.log(JSON.stringify({
+      teste: function () {
+        return "teste";
+      }
+    }));
+
+    // Em Arrays, os mesmo tipos acimas são censurados com null:
+
+    console.log(JSON.stringify([undefined, "teste"]));
+
+    console.log(JSON.stringify([function teste() {
+      return true;
+    }, "teste"]));
+
+    var teste = function teste() {
+      return true;
+    }
+
+    console.log(JSON.stringify([teste, "teste"]));
+
+    // Propriedades não enumeráveis (as herdadas por exemplo) serão ignoradas:
+
+    var comida = {
+      tipo: "a definir",
+      exibirTipo: function () {
+        return this.tipo;
+      }
+    }
+
+    var banana = Object.create(comida);
+
+    banana.tipo = "fruta";
+
+    console.log(JSON.stringify(comida));
+
+    console.log(JSON.stringify(banana));
+
+    /* Esses valores podem ser substituidos especificando a função replacer, no exemplo abaixo, vamos verificar se objeto possui uma chave "valor" converter o numero com 2 casas decimais, o ultimo argumento configura a indentação com 2 espaços. */
+
+    function formatarValor(key, value) {
+      if (key === "valor") {
+        return value.toFixed(2);
+      }
+
+      return value;
+    }
+
+    var produto = {
+      nome: "MacBook Pro",
+      marca: "Apple",
+      modelo: 2012,
+      categoria: "Notebooks",
+      valor: 3500
+    }
+
+    console.log(JSON.stringify(produto, formatarValor, 2));
+
+    /* JSON.parse() --------------------------------------------------------- */
+
+    /* Analisa uma string JSON e retorna um objeto correspondente. No exemplo abaixo criaremos uma string no padrão de formatação JSON e utilizaremos uma função para modificar a conversão, alterando o valor da propriedade "name" para caixa alta. */
+
+    var user = {
+      name: "jonatas",
+      email: "teste@teste.com",
+      plano: "premium"
+    };
+
+    var userStr = JSON.stringify(user);
+
+    function formatarNome(key, value) {
+      if (key === "name") {
+        return value.toUpperCase();
+      }
+
+      return value;
+    }
+
+    console.log(JSON.parse(userStr, formatarNome));
+  </script>
+</body>
+
+</html>
