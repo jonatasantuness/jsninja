@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Arrays - toString, concat, unshift e shift</title>
+</head>
+
+<body>
+  <script>
+    /* Array.toString() ----------------------------------------------------- */
+
+    /* Assim como o método Array.join(), O método toString() retorna uma string representando um array específico e seus elementos separados por uma virgula. (Não modifica o Array principal, apenas retorna a string) */
+
+    var months = ["Jan", "Feb", "Mar", "Apr"];
+
+    var monthStr = months.toString(); // atribui "Jan,Feb,Mar,Apr" para a variável.
+
+    console.log("monthStr\n", monthStr);
+
+    /* Array.concat() ------------------------------------------------------- */
+
+    /* Cria um novo array unindo todos os elementos que foram passados como parâmetro, na ordem dada, para cada argumento e seus elementos (se o elemento passado for um array). */
+
+    var frontEnd = ["Javascript", "HTML", "CSS"];
+
+    var backEnd = ["PHP", "Python", "Java"];
+
+    var dev = frontEnd.concat(backEnd);
+
+    console.log('dev\n', dev);
+
+    /* O concat copia a referência aos objetos para o novo array. Tanto o original quanto a cópia apontam para o mesmo objeto. Ou seja, se o objeto foi modificado, as mudanças serão visíveis no objeto original e no array. */
+
+    backEnd.pop();
+
+    backEnd.push("Ruby");
+
+    dev = frontEnd.concat(backEnd);
+
+    console.log('dev modificao\n', dev);
+
+    /* Array.unshift() ------------------------------------------------------ */
+
+    /* O método unshift() adiciona um ou mais elementos no início de um array e retorna o número de elementos (propriedade length) atualizado. O unshift é intencionalmente genérico; este método pode ser chamado via "call" ou "apply" em objetos que se assemelham aos arrays. Objetos que não contêm uma propriedade length que reflete a última de uma série consecutiva de propriedades numéricas, iniciada por 0, podem não comportar-se de maneira significativa. */
+
+    var nomeCompleto = ["Souza"];
+
+    // Retorna o Length atualizado e modifica o Array original
+
+    console.log(nomeCompleto.unshift("Jonatas", "antunes", "de"));
+
+    console.log(nomeCompleto);
+
+    var nomeProduto = ["Iphone x"];
+
+    console.log(nomeProduto.unshift([
+      "Smartphone",
+      "Apple",
+    ]));
+
+    console.log(nomeProduto);
+
+    /* Array.shift() -------------------------------------------------------- */
+
+    /* O método shift() remove o primeiro elemento de um array e retorna esse elemento. Este método muda o tamanho do array, retorna undefined se o array estiver vazio. */
+
+    var lista = ["leite", "banana", "chocolate", "pão"];
+
+    console.log(lista.shift());
+
+    console.log("lista atualizada\n", lista);
+  </script>
+</body>
+
+</html>

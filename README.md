@@ -72,6 +72,10 @@
   - [73. Métodos de Objetos](./secao_12/73-metodos-de-objetos.html)
   - [74. Métodos de Arrays](./secao_12/74-metodos-de-arrays.html)
 
+- Seção 13
+
+  - [](./secao_13/)
+
 
 ## Referências
 
