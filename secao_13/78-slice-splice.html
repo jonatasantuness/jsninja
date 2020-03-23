@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Slice e Splice</title>
+</head>
+
+<body>
+  <ul class="lista">
+    <li>teste 1</li>
+    <li>teste 2</li>
+    <li>teste 3</li>
+    <li>teste 4</li>
+    <li>teste 5</li>
+  </ul>
+
+  <script>
+    /* Array.slice() -------------------------------------------------------- */
+
+    /* O método slice() retorna uma cópia de parte de um array original, possui dois parâmetros, um número de index inicial e outro final (não obrigatório). O Array original não é modificado. */
+
+    // arr.slice([início[,fim]])
+
+    /* exemplo: vamos exibir do item 'primeiro' ao 'terceiro'. No segundo parâmetro, o index final não conta na exibição, então aqui estamos dizendo 'quero exibir do indice 0 ao 2' */
+
+    var frutas = ['primeiro', 'segundo', 'terceiro', 'quarto', 'quinto'];
+
+    console.log('obtendo do indice 0 ao 2\n', frutas.slice(0, 3));
+
+    // se não usarmos o segundo parâmetro, ele retorna todos os outros items
+
+    console.log('omitindo segundo parâmetro\n', frutas.slice(2));
+
+    /* Como um indice negativo, início indica um deslocamento em relação ao fim da sequência. slice(-2) extrai os dois últimos elementos da sequência. */
+
+    console.log('indice inicial negativo\n', frutas.slice(-3));
+
+    /* Como indice negativo, o index final indica um deslocamento em relação ao fim da sequência. slice(0,-2) corta começando do indice 0, e depois de trás para frente o indice 1 */
+
+    console.log('indice final negativo\n', frutas.slice(0, -2));
+
+    /* O método slice pode também ser chamado para converter objetos ou coleções Array-like em um novo Array. Você só precisa encadear o método no Array. */
+
+    var listaNode = document.querySelectorAll('.lista li');
+
+    // O elemento abaixo não é um array e sim um 'NodeList'
+
+    console.log(listaNode);
+
+    // utilizando o slice para a conversão
+
+    function arrayLikeToArray(arrayLike) {
+      return Array.prototype.slice.call(arrayLike);
+    }
+
+    console.log('NodeList em Array\n', arrayLikeToArray(listaNode));
+
+    /* Array.splice() -------------------------------------------------------- */
+
+    /* O método splice() altera o conteúdo de um array original adicionando novos elementos enquanto remove elementos antigos, o array original é modificado. Possuí 3 argumentos, o indice, o deleteCount e os elementos. */
+
+    /* indice: Índice o qual deve iniciar a alterar a lista. Se maior que o tamanho total da mesma, nenhum elemento será alterado. Se negativo, irá iniciar a partir daquele número de elementos a partir do fim. */
+
+    /* deleteCount: Um inteiro indicando o número de antigos elementos que devem ser removidos. Se esse parâmetro não é especificado, ou se é maior que o número de elementos restantes na lista iniciando pelo índice, então todos os elementos até o fim da lista serão deletados. Se deleteCount é 0, nenhum elemento é removido. Neste caso você deve especificar pelo menos um novo elemento. */
+
+    /* elemento1, ..., elementoN: Os elementos a adicionar na lista. Se você não especificar nenhum elemento, splice simplesmente removerá elementos da mesma. */
+
+    var comida = ['sushi', 'hamburguer', 'salada', 'lasanha', 'macarrão'];
+
+    // O retorno é um array contendo os elementos removidos, por exemplo, não gosto de comida com massa e quero tirar 'lasanha' e 'macarrão' para incluir 'pudim' no lugar, então pego o index inicial (incluindo o quero excluir), o numero de items à serem excluidos e o novo elemento:
+
+    console.log('pudim no lugar das massas\n', comida.splice(3, 2, 'pudim'));
+
+    console.log('o array original mudou\n', comida);
+
+    /* Se apenas um elemento é removido, por exemplo, um array contendo apenas um elemento é retornada. Se nenhum elemento é removido, um array vazio é retornado. */
+
+    console.log('removendo o pudim\n', comida.splice(3, 1));
+
+    console.log('array modificado sem o pudim\n', comida);
+  </script>
+</body>
+
+</html>

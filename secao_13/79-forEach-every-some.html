@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>forEach, every, some</title>
+</head>
+
+<body>
+  <script>
+    /* Array.forEach() ------------------------------------------------------ */
+
+    /* O método forEach() executa uma função de callback em cada elemento de um array, diferentemente de map() que retorna um array, o forEach sempre retorna o valor undefined e não é encadeável, então quando quiser retornar um array para encadear outras funções, não utilize o outros métodos. */
+
+    /* O forEach possui 2 argumentos, uma função de callback e o valor a ser usado como 'this' (opcional). A função de callback possui 3 argumentos, o item atual, o indice (opcional) e o array a ser aplicado (opcional) */
+
+    // arr.forEach(callback(currentValue[, index[, array]])[, thisArg]);
+
+    var names = ['Jonatas', 'Carlos', 'Ester'];
+
+    var eachNames = names.forEach(function (name) {
+      console.log('nome: ', name);
+    });
+
+    // o forEach exibirá os nomes no console, sem modificar a array original
+
+    console.log(eachNames); // undefined
+
+    /* A única maneira de parar ou interromper um loop forEach() é disparando uma exceção. Se você precisa desse recurso, o método forEach() é a ferramenta errada. Você estará mais bem servido com um loop simples nesse caso. */
+
+    /* Se estiver testando o array de elementos para um predicado e precisar de um valor de retorno Boleano, você pode usar every() ou some(). */
+
+    var produtos = ['Iphone X', 'Galaxy 20', 'Redmi Note 7', 'Mi Band'];
+
+    // O argumento indice pode ser omitido
+
+    produtos.forEach(function (produto) {
+      console.log('produto: ', produto);
+    });
+
+    // utilizando o indice
+
+    produtos.forEach(function (produto, index) {
+      console.log('Indice: ' + index + '\nproduto: ', produto);
+    });
+
+    /* Array.every() ------------------------------------------------------ */
+
+    /* O método every() testa se todos os elementos do array passam pelo teste implementado pela função fornecida e retorna True caso pelo menos um dos elementos seja Truthy, senão retorna False. O método every não modifica o array original. */
+
+    /* Use every() quando é preciso testar se todos os elementos de um array passam por um teste específico (que é uma função). Em outras palavras, para testar se tudo dentro de um array corresponde a um critério determinado. */
+
+    // A função callback possui três argumentos: o valor do elemento atual, o índice e o array original
+
+    // arr.every(callback[, thisArg])
+
+    // Neste exemplo vamos checar se todos os alunos são maior de idade
+
+    var alunosDaFacul = [
+      { name: 'Joao', age: 18 },
+      { name: 'Felipe', age: 20 },
+      { name: 'Leticia', age: 15 },
+      { name: 'Maria', age: 19 }
+    ]
+
+    function checkAgeOfMajority(aluno, index, array) {
+      return aluno.age >= 18;
+    }
+
+    console.log(alunosDaFacul.every(checkAgeOfMajority)); // false
+
+    /* Array.some() ------------------------------------------------------- */
+
+    /* Diferente do every que testa se todos elementos passam por uma validação, o método some() testa se pelo menos algum dos elementos de um array passa no teste implementado por uma função atribuída. Retorna true se a função callback retornar true para qualquer elemento do array, caso contrário false. */
+
+    /* Use some() quando: é preciso testar se pelo menos 1 elemento de um array passa por um teste específico (que é uma função). Em outras palavras, use some() para testar se algum elemento dentro de um array corresponde a um critério determinado. */
+
+    // A função callback possui três argumentos: o valor do elemento atual, o índice e o array original
+
+    // arr.some(callback[, thisArg])
+
+    // Neste exemplo vamos verificar se algum usuário é empresa (possui cnpj)
+
+    var users = [
+      { name: 'Jonatas', type: 'cpf' },
+      { name: 'Apple', type: 'cnpj' },
+      { name: 'Carlos', type: 'cpf' },
+      { name: 'Fernando', type: 'cpf' }
+    ]
+
+    function isCompany(user, index, array) {
+      return user.type === 'cnpj';
+    }
+
+    console.log(users.some(isCompany)); // true
+  </script>
+</body>
+
+</html>

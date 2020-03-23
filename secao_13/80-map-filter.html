@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>map e filter</title>
+</head>
+
+<body>
+  <script>
+    /* Higher Order Functions ----------------------------------------------- */
+
+    /* Função de alta ordem são funções que recebem uma ou mais funções como argumentos ou retorna uma função como resultado. map, filter e reduce são funções de alta ordem, que recebem uma função como argumento. */
+
+    /* Array.map() ---------------------------------------------------------- */
+
+    /* O método map() invoca a função callback passada por argumento para cada elemento do Array e devolve um novo Array como resultado. O map não modifica o array original. No entanto, a função callback invocada por ele pode fazê-lo. */
+
+    /* A função callback é chamada apenas para os elementos do array original que tiverem valores atribuídos; os elementos que estiverem como undefined, que tiverem sido removidos ou os que nunca tiveram valores atribuídos não serão considerados. */
+
+    /* Se o parametro thisArg foi passado para o método map, ele será repassado para a função callback no momento da invocação para ser utilizado como o this. Caso contrário, o valor undefined será repassado para uso como o this. */
+
+    // A função callback possui três argumentos: o valor do elemento atual, o índice e o array original
+
+    // arr.map(callback[, thisArg])
+
+    // Exemplo: converter temperaturas de Fahrenheit para Celsius.
+
+    var fahrenheit = [0, 32, 45, 50, 75, 80];
+
+    var celsius = fahrenheit.map(function (degree) {
+      return Math.round((degree - 32) * 5 / 9) + ' °C';
+    });
+
+    console.log(celsius);
+
+    /* Uma das vantagens de utilizarmos o map ao forEach é possibilidade de encadear funções, como no exemplo abaixo utilizaremos o map para aplicar 10% de aumento nos salários e depois com o seu retorno vamos filtrar somente os salários que ficaram abaixo de 1000. */
+
+    var salarios = [1000, 880, 700, 2200];
+
+    var salariosReajustados = salarios.map(function (salario) {
+      return (salario * 1.1).toFixed(2);
+    }).filter(function (salarioReajustado) {
+      return salarioReajustado < 1000;
+    });
+
+    console.log(salariosReajustados);
+
+    /* Array.filter() ------------------------------------------------------- */
+
+    /* O método filter() cria um novo array com todos os elementos que passaram no teste implementado pela função fornecida. O filter não altera o array original. */
+
+    // A função callback possui três argumentos: o valor do elemento atual, o índice e o array original
+
+    // var newArray = arr.filter(callback[, thisArg])
+
+    // No exemplo abaixo vamos filtrar somente os pets que são gatos e fêmeas
+
+    var pets = [
+      { name: 'Rex', type: 'dog', gender: 'male' },
+      { name: 'Lady', type: 'cat', gender: 'female' },
+      { name: 'Hanna', type: 'dog', gender: 'female' },
+      { name: 'Felix', type: 'cat', gender: 'male' },
+      { name: 'Saturn', type: 'cat', gender: 'male' },
+      { name: 'Layla', type: 'cat', gender: 'female' }
+    ];
+
+    var cats = pets.filter(function (pet) {
+      return pet.type === 'cat' && pet.gender === 'female';
+    });
+
+    console.log(cats);
+  </script>
+</body>
+
+</html>
