@@ -74,10 +74,16 @@
 
 - Seção 13
 
-  - [77. Arrays - toString, concat, unshift e](./secao_13/77-arrays-toString-concat-unshift-shift.html)
+  - [77. toString, concat, unshift e shift](./secao_13/77-arrays-toString-concat-unshift-shift.html)
   - [78. slice e splice](./secao_13/78-slice-splice.html)
   - [79. forEach, every, some](./secao_13/79-forEach-every-some.html)
   - [80. map e filter](./secao_13/80-map-filter.html)
+
+- Seção 14
+
+  - [84. reduce() e reduceRight()](./secao_14/84-reduce-reduceRight.html)
+  - [](./secao_14/)
+  - [](./secao_14/)
 
 
 ## Referências

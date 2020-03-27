@@ -88,9 +88,9 @@
     };
 
     var loggedMessage = compose(
-      upperCase,
+      insertDateLogin,
       insertGreet,
-      insertDateLogin
+      upperCase
     );
 
     console.log("Retorno do compose:\n", loggedMessage);

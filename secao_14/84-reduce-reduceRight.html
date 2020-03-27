@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>reduce() e reduceRight()</title>
+</head>
+
+<body>
+
+  <ul id="produtos"></ul>
+
+  <script>
+    /* Array.reduce() ------------------------------------------------------- */
+
+    /* O método reduce(callback[, valorInicial]) executa uma função de callback 'reducer' cada item do array e gera um único valor de retorno (de qualquer tipo), o array original não é modificado. */
+
+    /* A função callback 'reducer' é alimentada por 4 parâmetros:
+    *
+    * - Acumulador
+    * - Valor Atual
+    * - Index Atual (opcional)
+    * - Array original (opcional)
+    */
+
+    var numeros = [10, 20, 30, 40, 50];
+
+    /* O reduce pega o valor 'acumulado' que a princípio vem do valor inicial, no nosso caso '0' e soma com o atual item do indice do array, depois vai percorrendo o array e somando o valor subsequente, se o valor do acumulador não for passado, ele passa a ser o primeiro item e o valor atual o segundo item. */
+
+    /*
+    * 1º passo: 0 + 10 = 10
+    * 2º passo: 10 + 20 = 30
+    * 3º passo: 30 + 30 = 60
+    * 4º passo: 60 + 40 = 100
+    * 5º passo: 100 + 50 = 150
+    */
+
+    var somaNumeros = numeros.reduce(function (acumulado, atual) {
+      console.log('acumulado: ', acumulado);
+      return acumulado + atual;
+    }, 0);
+
+    console.log(somaNumeros);
+
+
+    /* O segundo argumento 'valorInicial' é opcional e representa o objeto a ser usado como o primeiro argumento da primeira chamada da função callback. Se o valorInicial não tiver sido passado como argumento, então Acumulador será igual ao primeiro valor no array e valorAtual será igual ao segundo. */
+
+    var dateSplitted = ['23', '06', '1992'];
+
+    var dateFormatted = dateSplitted.reduce(function (acumulado, atual) {
+      return acumulado + '/' + atual;
+    });
+
+    console.log(dateFormatted);
+
+    // Podemos utilizar o Reduce para criar Strings HTML:
+
+    var produtos = ['Iphne X', 'Samsumg Galaxy Y', 'Xiaomi Redmi Note 8'];
+
+    var produtosHTML = produtos.reduce(function (acumulador, produto) {
+      return (acumulador += '<li>' + produto + '</li>');
+    }, '');
+
+    console.log(produtosHTML);
+
+    var listaProdutos = document.getElementById('produtos');
+
+    listaProdutos.innerHTML = produtosHTML;
+
+    /* Array.reduceRight() -------------------------------------------------- */
+
+    /* O método reduceRight() executa a função callback para cada item do array, recebendo quatro argumentos: o valor inicial (ou o valor retornado na ultima invocação do callback), o valor do elemento atual, o índice do elemento atual, e o array onde a operação está acontecendo. */
+
+    // arr.reduceRight(callback[, initialValue])
+
+    /* A função callback 'reducer' possui 4 parâmetros:
+    *
+    * - Valor Inicial / Retorno do callback anterior
+    * - Valor Atual
+    * - Index Atual (opcional)
+    * - Array original (opcional)
+    */
+
+    /* Pode ser util em 'Compose Functions', vamos usar o mesmo exemplo visto nas aulas anteoriores (secao_08 - aula 48). */
+
+    /* Basicamente temos 3 funções que estarão em uma Função 'Compose', porém precisamos garantir que elas sejam executadas na ordem correta. Poderiamos fazer um callback sendo acionado após o retorno do outro como fizemos na aula 48, ou podemos usar o reduceRight para fazer as chamadas aninhadas da direita para a esquerda. */
+
+    var upperCase = function (name) {
+      return name.toUpperCase();
+    };
+
+    var insertGreet = function (formatedName) {
+      return "Olá, " + formatedName + "!";
+    };
+
+    var insertDateLogin = function (formatedGreet) {
+      var date = new Date();
+      var dia = date.getDay();
+      var mes = date.getMonth();
+      var ano = date.getFullYear();
+      var dataCompleta = dia + "/" + mes + "/" + ano;
+      return formatedGreet + " Login realizado em " + dataCompleta;
+    };
+
+    var compose = function (upperCase, insertGreet, insertDateLogin) {
+      console.log('arguments\n', arguments);
+
+      var argsLength = arguments.length;
+      var fns = new Array(argsLength);
+
+      for (var index = 0; index < argsLength; index++) {
+        fns[index] = arguments[index];
+      }
+
+      console.log('Array com as funções do compose:\n', fns);
+
+      return function (name) {
+        return fns.reduceRight(function (previousValue, currentFn, index) {
+          console.log(
+            'função atual:\n',
+            index + ' - ' + currentFn.name
+          );
+          console.log(
+            'retorno:\n',
+            index + ' - ' + previousValue
+          );
+          return currentFn(previousValue);
+        }, name);
+      };
+    };
+
+    var loggedMessage = compose(
+      insertDateLogin,
+      insertGreet,
+      upperCase
+    );
+
+    console.log(loggedMessage('jonatas'));
+  </script>
+</body>
+
+</html>
