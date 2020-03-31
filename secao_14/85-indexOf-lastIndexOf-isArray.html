@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>indexOf(), lastIndexOf() e isArray()</title>
+</head>
+
+<body>
+
+  <script>
+    /* Array.indexOF() ------------------------------------------------------ */
+
+    /* O método indexOf() retorna o primeiro índice em que o elemento pode ser encontrado no array, retorna -1 caso o mesmo não esteja presente. */
+
+    // array.indexOf(elementoDePesquisa, [pontoInicial = 0])
+
+    /* indexOf() compara o  elementoDePesquisa com os elementos do Array usando igualdade estrita */
+
+    var nomes = ['Jonatas', 'Fernando', 'Carlos', 'Ester'];
+
+    console.log('Possui o nome "Ester"?', nomes.indexOf('Ester')); // index 3
+
+    console.log('Possui o nome "Luis"?', nomes.indexOf('Luis')); // -1
+
+    if (nomes.indexOf('Ester')) {
+      console.log('A lista de nomes possui o nome "Ester"!');
+    }
+
+    // a checagem pode ser feita a partir de um indice específico
+
+    if (nomes.indexOf('Carlos', 1)) {
+      console.log('Depois do indice 1 existe um nome "Carlos"!');
+    }
+
+    // Normalmente é utilizado para validar entrada de dados no array
+
+    var lanche = ['pão', 'hamburguer', 'alface', 'tomate', 'molho especial'];
+
+    function inserirIngrediente(lanche, ingrediente) {
+      if (lanche.indexOf(ingrediente) === -1) {
+        lanche.push(ingrediente);
+        console.log('Ingrediente adicionado!');
+        return lanche;
+      } else {
+        return 'O ingrediente ' + ingrediente + ' já está no lanche!';
+      }
+    }
+
+    console.log(inserirIngrediente(lanche, 'ketchup'));
+
+    console.log(inserirIngrediente(lanche, 'alface'));
+
+    /* Array.lastIndexOf() -------------------------------------------------- */
+
+    /* O método lastIndexOf() retorna o ultimo índice que um certo elemento pode ser encontrado no array, ou -1 se o elemento não estiver presente. O array é pesquisado de trás para frente, começando pelo fromIndex. */
+
+    // arr.lastIndexOf(searchElement[, fromIndex = arr.length - 1])
+
+    // Exemplo: Encontrando todas as ocorrências de um elemento
+
+    var simbolos = ['x', 'o', 'x', 'x', 'o', 'x', 'o'];
+    var indices = [];
+    var simbolo = 'o';
+    var lastIndexOf = simbolos.lastIndexOf(simbolo);
+
+
+    while (lastIndexOf !== -1) {
+      indices.push(lastIndexOf);
+
+      console.log('último índice localizado: ', lastIndexOf);
+
+      if (lastIndexOf > 0) {
+        lastIndexOf = simbolos.lastIndexOf(simbolo, lastIndexOf - 1);
+      } else {
+        lastIndexOf = -1;
+      }
+    }
+
+    /* Array.isArray() ------------------------------------------------------ */
+
+    /* O método Array.isArray() retorna true se um objeto é uma array, e false se não é. */
+
+    console.log(Array.isArray([])); // true
+    console.log(Array.isArray(new Array())); // true
+    // Array.prototype por si só é uma array:
+    console.log(Array.isArray(Array.prototype)); // true
+
+    console.log(Array.isArray(23)); // false
+    console.log(Array.isArray('Array')); // false
+  </script>
+</body>
+
+</html>

@@ -82,8 +82,7 @@
 - Seção 14
 
   - [84. reduce() e reduceRight()](./secao_14/84-reduce-reduceRight.html)
-  - [](./secao_14/)
-  - [](./secao_14/)
+  - [85. indexOf(), lastIndexOf() e isArray()](./secao_14/85-indexOf-lastIndexOf-isArray.html)
 
 
 ## Referências
