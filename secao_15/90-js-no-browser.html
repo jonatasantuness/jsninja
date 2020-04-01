@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>JS no Browser</title>
+  <!-- Ao colocar tags script no head, você garante que o script seja executado antes de qualquer elemento ser colocado no body e estará presente quando a página for "montada", porém, a desvantagem é que o Browser poderá bloquear a renderização dos outros elementos até os scripts serem interpretados por completo, então por questão performance é recomendado que as tags script sejam adicionados no final da página antes da tag body -->
+  <script>
+    console.log('Script no HEAD');
+  </script>
+</head>
+
+<body>
+
+  <!-- Colocar a tag script antes do fechamento do body, permite que o conteúdo antes dela apareça para o usuário sem ter de esperar a execução dos scripts. O ideal é que o script seja obtido externamente pelo atributo 'src', pois assim ao ser carregado uma vez ele fica armazenado em cache. -->
+
+  <script src="js-externo-1.js"></script>
+
+  <!-- Ao carregar scripts é necessário se atentar ao escopo, no exemplo abaixo vamos exibir uma variável definida no outro arquivo "js-externo-1.js", porque a mesma foi definida em escopo global, o que é uma prática ruim pois pode gerar conflitos e sobreposição de variáveis. -->
+
+  <script src="js-externo-2.js"></script>
+
+  <!-- Uma das maneiras de evitarmos esses conflitos é utilizarmos um escopo local no script como por exemplo a IIFE, quando quisermos compartilhar algo com outros arquivos o mais ideal seria exportar o script como global. -->
+
+  <script src="js-externo-escopo-local.js"></script>
+</body>
+
+</html>
