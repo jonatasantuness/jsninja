@@ -1,116 +1,141 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>this</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>this</title>
-</head>
+  <body>
+    <script>
+      /* this --------------------------------------------------------------- */
 
-<body>
-  <script>
-    /* this ----------------------------------------------------------------- */
+      /* A palavra-chave this comporta-se um pouco diferente em Javascript se comparado com outras linguagens. Também possui algumas diferenças entre o modo estrito e o modo não estrito. */
 
-    /* A palavra-chave this comporta-se um pouco diferente em Javascript se comparado com outras linguagens. Também possui algumas diferenças entre o modo estrito e o modo não estrito. */
+      /* Em muitos casos, o valor this é determinado pela forma como a função é chamada. O ES5 introduziu o método 'bind' para estabelecer o valor this da função, independentemente de como ela seja chamada, e o ES6 introduziu as 'Arrow Functions', cujo this é lexicalmente delimitado (o valor this é estabelecido segundo o escopo de execução no qual está inserido). */
 
-    /* Em muitos casos, o valor this é determinado pela forma como a função é chamada. O ES5 introduziu o método 'bind' para estabelecer o valor this da função, independentemente de como ela seja chamada, e o ES6 introduziu as 'Arrow Functions', cujo this é lexicalmente delimitado (o valor this é estabelecido segundo o escopo de execução no qual está inserido). */
+      /* Contexto Global ---------------------------------------------------- */
 
+      /* No contexto de execução global (fora de qualquer função), this refere-se ao objeto global, seja em modo estrito ou não. */
 
-    /* Contexto Global ------------------------------------------------------ */
+      // Em navegadores web, o objeto window é também o objeto global:
 
-    /* No contexto de execução global (fora de qualquer função), this refere-se ao objeto global, seja em modo estrito ou não. */
+      console.log(this === window); // true
 
-    // Em navegadores web, o objeto window é também o objeto global:
+      this.novaPropriedade = "Propriedade inserida no objeto global";
 
-    console.log(this === window); // true
+      console.log(novaPropriedade);
 
-    this.novaPropriedade = 'Propriedade inserida no objeto global';
+      /* Contexto de Função ------------------------------------------------- */
 
-    console.log(novaPropriedade);
+      // Dentro de uma função, o valor de this depende de como a função é chamada.
 
-    /* Contexto de Função --------------------------------------------------- */
+      // Chamada Simples (sem modo estrito)
 
-    // Dentro de uma função, o valor de this depende de como a função é chamada.
+      /* Como o código a seguir não está no modo estrito, o valor de this não é definido pela chamada. Por padrão, this será o objeto global que no navegador é o window. */
 
-    // Chamada Simples (sem modo estrito)
-
-    /* Como o código a seguir não está no modo estrito, o valor de this não é definido pela chamada. Por padrão, this será o objeto global que no navegador é o window. */
-
-    function simpleNoStrict() {
-      return this;
-    }
-
-    console.log('Chamada Simples (sem modo estrito)\n', simpleNoStrict());
-
-    console.log(simpleNoStrict() === this); // true
-
-    // Chamada Simples (com modo estrito)
-
-    /* Em modo estrito, se o this não for definido durante o contexto da execução, ele permanecerá indefinido (undefined). */
-
-    function simplesStrict() {
-      'use strict';
-      return this;
-    }
-
-    console.log('Chamada Simples (com modo estrito)\n', simplesStrict());
-
-    /* Contexto de Método de Objeto ----------------------------------------- */
-
-    /* Quando uma função é chamada como um método de um objeto, o this se torna o próprio objeto em questão. */
-
-    var jonatas = {
-      dataDeNascimento: '23/06/1992',
-      getDataDeNascimento: function () {
-        return this.dataDeNascimento;
+      function simpleNoStrict() {
+        return this;
       }
-    }
 
-    console.log(jonatas.getDataDeNascimento());
+      console.log("Chamada Simples (sem modo estrito)\n", simpleNoStrict());
 
-    /* Observe que esse comportamento não é afetado mesmo pela forma como (ou onde) a função foi definida, vamos atribuir mais um método ao objeto 'jonatas' porém utilizando uma função fora dele. */
+      console.log(simpleNoStrict() === this); // true
 
-    function exibirThis() {
-      return this;
-    }
+      // Chamada Simples (com modo estrito)
 
-    jonatas.exibirThis = exibirThis;
+      /* Em modo estrito, se o this não for definido durante o contexto da execução, ele permanecerá indefinido (undefined). */
 
-    console.log(jonatas.exibirThis());
-
-    /* Quando existe outro objeto dentro do objeto, o this sempre irá pegar a referência mais próxima: */
-
-    jonatas.familia = {
-      pai: 'Carlos',
-      mae: 'Elizete',
-      irma: 'Ester'
-    }
-
-    jonatas.familia.exibirThis = exibirThis;
-
-    console.log(jonatas.familia.exibirThis());
-
-    /* A mesma noção vale para métodos definidos em algum lugar da cadeia de protótipos do objeto. No exemplo abaixo, o this refere-se ao objeto que é proprietário do método chamado, como se o método 'formatar' estivesse no objeto 'real'. */
-
-    var objFormatarDinheiro = {
-      formatar: function (valor) {
-        return this.moeda + ' ' + valor;
+      function simplesStrict() {
+        "use strict";
+        return this;
       }
-    }
 
-    var real = Object.create(objFormatarDinheiro);
+      console.log("Chamada Simples (com modo estrito)\n", simplesStrict());
 
-    real.moeda = 'R$';
+      /* Contexto de Método de Objeto --------------------------------------- */
 
-    console.log(real.formatar('500,00'));
+      /* Quando uma função é chamada como um método de um objeto, o this se torna o próprio objeto em questão. */
 
-    var dolar = Object.create(objFormatarDinheiro);
+      var jonatas = {
+        dataDeNascimento: "23/06/1992",
+        getDataDeNascimento: function () {
+          return this.dataDeNascimento;
+        },
+      };
 
-    dolar.moeda = 'US$';
+      console.log(jonatas.getDataDeNascimento());
 
-    console.log(dolar.formatar('399.00'));
-  </script>
-</body>
+      /* Observe que esse comportamento não é afetado mesmo pela forma como (ou onde) a função foi definida, vamos atribuir mais um método ao objeto 'jonatas' porém utilizando uma função fora dele. */
 
+      function exibirThis() {
+        return this;
+      }
+
+      jonatas.exibirThis = exibirThis;
+
+      console.log(jonatas.exibirThis());
+
+      /* Quando existe outro objeto dentro do objeto, o this sempre irá pegar a referência mais próxima: */
+
+      jonatas.familia = {
+        pai: "Carlos",
+        mae: "Elizete",
+        irma: "Ester",
+      };
+
+      jonatas.familia.exibirThis = exibirThis;
+
+      console.log(jonatas.familia.exibirThis());
+
+      /* A mesma noção vale para métodos definidos em algum lugar da cadeia de protótipos do objeto. No exemplo abaixo, o this refere-se ao objeto que é proprietário do método chamado, como se o método 'formatar' estivesse no objeto 'real'. */
+
+      var objFormatarDinheiro = {
+        formatar: function (valor) {
+          return this.moeda + " " + valor;
+        },
+      };
+
+      var real = Object.create(objFormatarDinheiro);
+
+      real.moeda = "R$";
+
+      console.log(real.formatar("500,00"));
+
+      var dolar = Object.create(objFormatarDinheiro);
+
+      dolar.moeda = "US$";
+
+      console.log(dolar.formatar("399.00"));
+
+      /* Referências a instância de Objetos --------------------------------- */
+
+      /* Quando utilizamos a palavra chave 'new', estamos criando uma nova referência do objeto na memória, na qual podemos atribuir à alguma variável. */
+
+      var myObject = new Object();
+
+      console.log(new Object() === new Object()); // false
+
+      /* O Object é um construtor padrão do JavaScript, porém nós também podemos criar nossos próprios construtores através de funções construtoras, por padrões essas funções são nomeadas com letra maíuscula. */
+
+      function Person(name, age) {
+        console.log("o this de Person é:\n", this);
+        this.name = name;
+        this.age = age;
+      }
+
+      console.log("Person sem new\n", Person("Jonatas", 28));
+
+      console.log("Person com new\n", new Person("Jonatas", 28));
+
+      /* O uso do 'new' é importante pois o 'this' dentro da função construtora se refere ao objeto global Window, então se criarmos um novo Person sem o uso do new, os argumentos passados serão adicionados ao Window, e não é isso que queremos aqui. Dentro da instância do objeto, o this vai se referir à ela mesma. */
+
+      var carlos = new Person("Carlos", "48");
+
+      for (var prop in carlos) {
+        console.log(carlos[prop]);
+      }
+    </script>
+  </body>
 </html>
