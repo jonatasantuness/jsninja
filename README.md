@@ -84,6 +84,11 @@
   - [84. reduce() e reduceRight()](./secao_14/84-reduce-reduceRight.html)
   - [85. indexOf(), lastIndexOf() e isArray()](./secao_14/85-indexOf-lastIndexOf-isArray.html)
 
+- Seção 15
+
+  - [90. JS no Browser](./secao_15/90-js-no-browser.html)
+  - [91. this](./secao_15/91-this.html)
+  - [92. Arguments](./secao_15/92-arguments.html)
 
 ## Referências
 

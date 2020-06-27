@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Arguments</title>
+  </head>
+
+  <body>
+    <script>
+      /* Arguments ---------------------------------------------------------- */
+
+      /* O objeto Arguments é uma variável Array-Like local disponível dentro de todas as funções, ela representa os argumentos passados para uma função com o índice do primeiro registro começando em 0. */
+
+      function myFunction(arg1, arg2) {
+        return arguments;
+      }
+
+      console.log("arguments\n", myFunction("Teste 1", "Teste 2"));
+
+      console.log("arguments vazio\n", myFunction());
+
+      console.log("arguments length\n", myFunction("Teste1", "Teste 2").length);
+
+      console.log("arguments específico\n", myFunction("Teste1", "Teste 2")[1]);
+
+      console.log("arguments indefinido\n", myFunction("Teste1", "Teste 2")[2]);
+
+      // Função para criar lista em HTML (ul ou ol) com arguments
+
+      function createList(typeList) {
+        var result = "<" + typeList + "l><li>"; // abertura da tag
+        var items = Array.prototype.slice.call(arguments, 1);
+
+        result += items.join("</li><li>"); // concatenação dos items
+        result += "</li></" + typeList + "l>"; // fechamento da tag
+
+        return result;
+      }
+
+      console.log(createList("u", "Item 1", "Item 2", "Item 3"));
+    </script>
+  </body>
+</html>

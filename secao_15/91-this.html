@@ -120,16 +120,18 @@
       /* O Object é um construtor padrão do JavaScript, porém nós também podemos criar nossos próprios construtores através de funções construtoras, por padrões essas funções são nomeadas com letra maíuscula. */
 
       function Person(name, age) {
-        console.log("o this de Person é:\n", this);
+        console.log("o this do Person " + name + " é:\n", this);
         this.name = name;
         this.age = age;
       }
 
-      console.log("Person sem new\n", Person("Jonatas", 28));
-
       console.log("Person com new\n", new Person("Jonatas", 28));
 
+      console.log("Person sem new\n", Person("Jonatas", 28));
+
       /* O uso do 'new' é importante pois o 'this' dentro da função construtora se refere ao objeto global Window, então se criarmos um novo Person sem o uso do new, os argumentos passados serão adicionados ao Window, e não é isso que queremos aqui. Dentro da instância do objeto, o this vai se referir à ela mesma. */
+
+      console.log("Window recebeu propriedade indevidamente\n", window.age);
 
       var carlos = new Person("Carlos", "48");
 
