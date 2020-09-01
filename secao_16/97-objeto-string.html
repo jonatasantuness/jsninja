@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Objeto String</title>
+  </head>
+
+  <body>
+    <script>
+      /* String ------------------------------------------------------------- */
+
+      /* O objeto global String  é um construtor para strings, ou uma sequência de caracteres. */
+
+      /* Além da forma regular, de caracteres de impressão, caracteres especiais podem ser codificados usando a escape notation (notação com barra invertida): */
+
+      console.log("o caractere NULL: \0");
+      console.log("aspas simples: '");
+      console.log('aspas duplas: "');
+      console.log("barra invertida: \\");
+      console.log("quebra de linha: \nquebrou!");
+      console.log("\t tab");
+      console.log("\b backspace");
+      console.log("\u{1F436} unicode");
+
+      /* length ------------------------------------------------------------- */
+
+      // A propriedade 'length' retorna o comprimento de uma string
+
+      console.log("Jonatas".length);
+
+      /* charAt(index) ------------------------------------------------------ */
+
+      /* Recebe como argumento um inteiro que representa o índice (se nenhum índice for fornecido será considerado 0) e retorna o caractere correspondente ao índice */
+
+      var name = "jonatas";
+
+      console.log(name.charAt());
+
+      console.log(name.charAt(name.length - 1));
+
+      for (var i = 0; i < name.length; i++) {
+        console.log("índice " + i + " caractere " + name.charAt(i));
+      }
+
+      /* concat() ----------------------------------------------------------- */
+
+      /* O método concat() combina o texto de duas ou mais strings e retorna uma nova string. Por questão de performance é altamente recomendável utilizar operadores de atribuição (+, +=) ao invés do método concat() */
+
+      var firstName = "Jonatas";
+      var lastName = "Antunes";
+      var greeting = "Olá ";
+
+      var greetingText = greeting.concat(firstName);
+      var greetingFullText = greeting.concat(firstName, " ", lastName);
+
+      console.log(greetingText);
+      console.log(greetingFullText);
+
+      /* indexOf(searchValue[, fromIndex] ----------------------------------- */
+
+      /* Recebe como argumento o termo a ser buscado (caso nenhum valor seja passado, será usado undefined) e procura o termo dentro da string. Caso o termo não seja localizado é retornado -1, se for localizado, retorna a posição do primeiro índice que correspondeu. O index também pode ser definido como um parâmetro opcional */
+
+      var site = "www.meusite.com.br/contato";
+
+      console.log(site.indexOf("contato"));
+      console.log(site.indexOf("contato", 20));
+      console.log(site.indexOf("loja"));
+      console.log("undefined".indexOf());
+
+      /* Note que um retorno '0' não implica em true, e '-1' não implica em false, portanto, a maneira correta de se verificar se um termo está contido em uma string, é verificando se o retorno é diferente de -1 */
+
+      if (site.indexOf("contato") !== -1) {
+        console.log("Localizei o termo na string!");
+      }
+
+      /* lastIndexOf(searchValue[, fromIndex] ------------------------------- */
+
+      /* Funciona como o indexOf(), porém ao invés de retornar o índice da primeira correspondência (da esquerda para direita), ele retorna o primeiro índice (da direita para esquerda) */
+
+      var textLastIndexOf = "Ninja Ninja Ninja";
+
+      console.log(textLastIndexOf.lastIndexOf("Ninja"));
+
+      /* replace(regexp|substr, newSubStr|function) ------------------------- */
+
+      /* O método replace() recebe como parâmetros, uma termo ou um padrão regex que será substituido por outro termo um avaliado em uma função. O replace irá substituir apenas a primeira correspondência. */
+
+      var replaceText = "Bye Bye Johnny!";
+
+      console.log(replaceText.replace("Bye", "Hello"));
+
+      /* slice(inicioSlice[, fimSlice]) ------------------------------------- */
+
+      /* O método slice() recebe dois valores de índices para extrair uma parte de uma string e retornar uma nova string sem modificar a original. */
+
+      /* O primeiro índice é obrigatário, se for negativo será tradado como (exemplo: str.length - 3), o segundo índice é opcional, se omitido, o slice extrairá até o final da string, se for negativo segue o mesmo comportamento */
+
+      var sliceTest = "superman";
+
+      console.log(sliceTest.slice(5, 8));
+      console.log(sliceTest.slice(5));
+      console.log(sliceTest.slice(-3));
+
+      /* split([separador[, limite]]) --------------------------------------- */
+
+      /* O método split() divide uma string e retorna um array de substrings. Os argumentos são opcionais, o primeiro argumento é o 'separador', que define qual será o caractere usado para dividir a string, se for omitido, será criado um array com a string inteira, o segundo argumento é um inteiro que representa o limite de divições que podem ser feitas */
+
+      var ip = "192.168.0.1";
+
+      console.log(ip.split());
+      console.log(ip.split("."));
+
+      /* dica: como o retorno é um array, podemos utilizar o método Array.join() para juntar as strings do arry novamente */
+
+      console.log(ip.split(".").join("."));
+
+      // Utilizando o limite de divisão
+
+      console.log(ip.split(".", 2));
+
+      /* substring(indexInicio[, indexFim]) --------------------------------- */
+
+      /* O método substring() retorna um subconjunto de uma string entre um indice e outro, ou até o final da string. A diferença desse método para o slice() é que se o índice inicial for maior que o índice final, o substring faz a inversão desses valores. */
+
+      var subStrTest = "Jonatas";
+
+      console.log(subStrTest.substring());
+      console.log(subStrTest.substring(0, 2));
+      console.log(subStrTest.substring(2));
+      console.log(subStrTest.substring(6, 2));
+
+      /* toLowerCase() ------------------------------------------------------ */
+
+      // Converte a string para minúsculo.
+
+      console.log("HELLO WORLD!!".toLowerCase());
+
+      /* toUpperCase() ------------------------------------------------------ */
+
+      // Converte a string para maiúscula.
+
+      console.log("hello world!!".toUpperCase());
+    </script>
+  </body>
+</html>

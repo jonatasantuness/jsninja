@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Use Strict</title>
+  </head>
+
+  <body>
+    <script>
+      /* Use Strict --------------------------------------------------------- */
+
+      /* O modo estrito ou 'use strict' é um diretiva introduzida no ES5 que faz várias mudanças nas semânticas normais do JavaScript. */
+
+      /* Primeiro, o strict mode elimina alguns erros silenciosos do JavaScript fazendo-os lançar exceções. Segundo, o strict mode evita equívocos que dificultam que motores JavaScript realizem otimizações. */
+
+      /* Invocando strict mode ---------------------------------------------- */
+
+      /* O Strict mode pode ser aplicado em scripts inteiros ou funções individuais. Ele não se aplica a declarações de bloco fechadas em chaves {}; nesse contexto ele não faz nada. Código eval, código Function, atributos event handlers, strings passadas para setTimeout e coisas do tipo são scripts inteiros, e invocar strict mode neles funciona como esperado. */
+
+      // Para invocar use "use strict" antes de qualquer outra declaração.
+
+      (function () {
+        // Sintaxe strict mode para todo o script
+        "use strict";
+        var teste = "Oi! Eu sou um script strict mode!";
+        console.log(teste);
+      })();
+
+      /* Strict mode para funções ------------------------------------------- */
+
+      function fnStrict() {
+        // Sintaxe strict mode a nível de função
+        "use strict";
+        function nested() {
+          return " E eu também!";
+        }
+        return "Eu sou uma função Strict!" + nested();
+      }
+
+      console.log(fnStrict());
+
+      /* Convertendo equívocos em erros ------------------------------------- */
+
+      /* O JavaScript foi projetado para ser fácil para novos desenvolvedores, e algumas vezes ele dá semânticas de não-erros à operações que deveriam ser erros. O Strict mode trata esses equívocos como erros para que sejam descobertos e consertados prontamente. */
+
+      // Atuações do Stric Mode:
+
+      (function () {
+        "use strict";
+
+        // Atribuições que acidentalmente criam variáveis globais
+
+        try {
+          variavelGlobal = "Variável Global";
+        } catch (error) {
+          console.log(error);
+        }
+
+        // Atribuições em propeidade 'Read Only' como o global NaN
+
+        try {
+          NaN = "NaN é Read Only";
+        } catch (error) {
+          console.log(error);
+        }
+
+        // Deletar variaveis, objetos ou funções
+
+        var pi = 3.14;
+        // delete pi;
+
+        var objetoTeste = { prop1: "Teste" };
+        // delete objetoTeste;
+
+        function fnTeste() {
+          return "Teste";
+        }
+        // delete fnTeste;
+
+        var fnExpressao = function () {
+          return "teste";
+        };
+        // delete fnExpressao;
+
+        // Duplicar parâmetros
+
+        /* function fnParametroDuplicado(arg1, arg1) {
+          return arg1;
+        } */
+
+        // Numéricos octais literais
+
+        // var octal = 010;
+        // var octal = \010;
+
+        // Numéricos octais literais
+
+        // Atribuir à uma propriedade Read Only
+
+        try {
+          var objLeitura = {};
+
+          Object.defineProperty(objLeitura, "prop", {
+            value: 0,
+            writable: false,
+          });
+
+          objLeitura.prop = "Tentando sobreescrever prop Read Only";
+        } catch (error) {
+          console.log(error);
+        }
+
+        // Atribuir à uma propriedade Get Only
+
+        try {
+          var objGetOnly = {
+            get propReadOnly() {
+              return "Propriedade Get Only";
+            },
+          };
+
+          objGetOnly.propReadOnly = "Tentando sobreescrever prop Get Only";
+        } catch (error) {
+          console.log(error);
+        }
+
+        // Utilizar keywords para nomear variáveis
+
+        // var eval = 'eval';
+        // var arguments = '';
+      })();
+
+      /* This no Strict mode ------------------------------------------------ */
+
+      /* No modo normal, o this dentro da função refere-se ao objeto que chamou a função, no caso abaixo o global 'window', porém no modo estrito se o this não for explicitamente declarado, ele será undefined. */
+
+      (function () {
+        "use strict";
+
+        console.log("this no strict mode\n", this);
+      })();
+    </script>
+  </body>
+</html>

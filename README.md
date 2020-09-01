@@ -90,6 +90,11 @@
   - [91. this](./secao_15/91-this.html)
   - [92. Arguments](./secao_15/92-arguments.html)
 
+- Seção 16
+
+  - [94. Use Strict](./secao_16/94-use-strict.html)
+  - [97. Objeto String](./secao_16/97-objeto-string.html)
+
 ## Referências
 
 - [Repositório do curso](https://github.com/da2k/curso-javascript-ninja)
